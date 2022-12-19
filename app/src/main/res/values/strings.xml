@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TiktokClone</string>
+    <string name="home">Trang chủ</string>
+    <string name="friend">Bạn bè</string>
+    <string name="newVideo"></string>
+    <string name="mailBox">Hộp thư</string>
+    <string name="profile">Hồ sơ</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

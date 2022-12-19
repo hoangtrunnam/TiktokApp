@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/home"
+        android:id="@+id/home"
+        android:icon="@drawable/home_icon"
+        />
+    <item android:title="@string/friend"
+         android:id="@+id/friend"
+        android:icon="@drawable/friend_icon"
+        />
+    <item android:title="@string/newVideo"
+        android:id="@+id/newVideo"
+        android:icon="@drawable/new_video"
+        />
+    <item android:title="@string/mailBox"
+        android:id="@+id/mailBox"
+        android:icon="@drawable/message"
+        />
+    <item android:title="@string/profile"
+        android:id="@+id/profile"
+        android:icon="@drawable/person"
+        />
+</menu>
