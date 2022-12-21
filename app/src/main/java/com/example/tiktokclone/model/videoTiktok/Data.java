@@ -30,6 +30,21 @@ public class Data {
     public Data() {
     }
 
+    public Data(int id, int user_id, String thumb_url, String file_url, String description, String music, boolean is_liked, int likes_count, int comments_count, int shares_count, int views_count, User user) {
+        this.id = id;
+        this.user_id = user_id;
+        this.thumb_url = thumb_url;
+        this.file_url = file_url;
+        this.description = description;
+        this.music = music;
+        this.is_liked = is_liked;
+        this.likes_count = likes_count;
+        this.comments_count = comments_count;
+        this.shares_count = shares_count;
+        this.views_count = views_count;
+        this.user = user;
+    }
+
     public int getId() {
         return id;
     }

@@ -12,12 +12,19 @@ import androidx.recyclerview.widget.SnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.tiktokclone.R;
-import com.example.tiktokclone.adapter.VideoAdapter;
-import com.example.tiktokclone.model.video;
+import com.example.tiktokclone.adapter.VideoTiktokAdapter;
+import com.example.tiktokclone.api.ApiService;
+import com.example.tiktokclone.model.videoTiktok.Data;
+import com.example.tiktokclone.model.videoTiktok.VideoTiktok;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,8 +38,8 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private ArrayList<video> listVideo = new ArrayList<>();
-    private VideoAdapter videoAdapter;
+    private  ArrayList<Data> dataVideo = new ArrayList<>();
+    private VideoTiktokAdapter videoTiktokAdapter;
     private RecyclerView recyclerView;
 
     // TODO: Rename and change types of parameters
@@ -68,42 +75,62 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
-        listVideo.add(new video("hoang nam","Khoái Khoái :))","tiktok music"));
-        listVideo.add(new video("trong nhat","Gumball & Darwin","fb music"));
-        listVideo.add(new video("minhduck","duck la 1 con vit","gg music"));
-        listVideo.add(new video("hiephoang","dang di choi","xuan nay con ko ve"));
-        listVideo.add(new video("nguyenanh","di du lich","hpny music"));
-
-        videoAdapter = new VideoAdapter(getContext(), listVideo);
-
-        videoAdapter.notifyDataSetChanged();
-
+        new Runnable() {
+            @Override
+            public void run() {
+                clickCallApi();
+            }
+        }.run();
     }
 
-//    private void getAllVideo() {
-//        try {
-//            listVideo = new ArrayList<>();
-//            listVideo = db.getAllContacts();
-//        } catch (Exception ex) {
-//            Log.e("getAllContact", ex.getMessage());
-//        }
-//    }
 
+    private void clickCallApi() {
+        ApiService.apiService.getListVideo("for-you", 1).enqueue(new Callback<VideoTiktok>() {
+            @Override
+            public void onResponse(Call<VideoTiktok> call, Response<VideoTiktok> response) {
+                VideoTiktok videoTiktok = response.body();
+                if (videoTiktok !=null && videoTiktok.getData().size() > 0) {
+                    for (int i=1;i<videoTiktok.getData().size(); i++){
+                        dataVideo.add(new Data(
+                                videoTiktok.getData().get(i).getId(),
+                                videoTiktok.getData().get(i).getUser_id(),
+                                videoTiktok.getData().get(i).getThumb_url(),
+                                videoTiktok.getData().get(i).getFile_url(),
+                                videoTiktok.getData().get(i).getDescription(),
+                                videoTiktok.getData().get(i).getMusic(),
+                                videoTiktok.getData().get(i).isIs_liked(),
+                                videoTiktok.getData().get(i).getLikes_count(),
+                                videoTiktok.getData().get(i).getComments_count(),
+                                videoTiktok.getData().get(i).getShares_count(),
+                                videoTiktok.getData().get(i).getViews_count(),
+                                videoTiktok.getData().get(i).getUser()
+                        ));
+                    }
+                    videoTiktokAdapter = new VideoTiktokAdapter(getContext(), dataVideo);
+                    videoTiktokAdapter.notifyDataSetChanged();
+                    Toast.makeText(getActivity(), videoTiktok.getMeta().getPagination().getLinks().getNext(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<VideoTiktok> call, Throwable t) {
+                Toast.makeText(getActivity(), "call api false", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = view.findViewById(R.id.rcListVideo);
-        recyclerView.setAdapter(videoAdapter);
+        recyclerView.setAdapter(videoTiktokAdapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
-        recyclerView.setAdapter(videoAdapter);
         return view;
     }
+
 }

@@ -9,6 +9,11 @@ public class VideoTiktok {
     public VideoTiktok() {
     }
 
+    public VideoTiktok(ArrayList<Data> data, Meta meta) {
+        this.data = data;
+        this.meta = meta;
+    }
+
     public ArrayList<Data> getData() {
         return data;
     }

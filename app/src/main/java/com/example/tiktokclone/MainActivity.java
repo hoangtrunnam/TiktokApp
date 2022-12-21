@@ -51,14 +51,17 @@ public class MainActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
 
+
         btnCallApi = findViewById(R.id.btn_call_api);
         btnCallApi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 clickCallApi();
+                Toast.makeText(MainActivity.this, "vao man home", Toast.LENGTH_LONG).show();
             }
 
             private void clickCallApi() {
+                Toast.makeText(MainActivity.this, "vao man home neeeee", Toast.LENGTH_LONG).show();
                 ApiService.apiService.getListVideo("for-you", 1).enqueue(new Callback<VideoTiktok>() {
                     @Override
                     public void onResponse(Call<VideoTiktok> call, Response<VideoTiktok> response) {
@@ -121,4 +124,5 @@ public class MainActivity extends AppCompatActivity {
         }
         win.setAttributes(winParams);
     }
+
 }
