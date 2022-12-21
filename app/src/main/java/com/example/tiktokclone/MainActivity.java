@@ -56,28 +56,10 @@ public class MainActivity extends AppCompatActivity {
         btnCallApi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickCallApi();
                 Toast.makeText(MainActivity.this, "vao man home", Toast.LENGTH_LONG).show();
             }
 
-            private void clickCallApi() {
-                Toast.makeText(MainActivity.this, "vao man home neeeee", Toast.LENGTH_LONG).show();
-                ApiService.apiService.getListVideo("for-you", 1).enqueue(new Callback<VideoTiktok>() {
-                    @Override
-                    public void onResponse(Call<VideoTiktok> call, Response<VideoTiktok> response) {
-                        Log.d("log res:", "onResponse() returned: " + response);
-                        VideoTiktok videoTiktok = response.body();
-                        if (videoTiktok !=null && videoTiktok.getData().size() > 0) {
-                            Toast.makeText(MainActivity.this, videoTiktok.getMeta().getPagination().getLinks().getNext(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(Call<VideoTiktok> call, Throwable t) {
-                        Toast.makeText(MainActivity.this, "call api false", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
         });
 
 //        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);

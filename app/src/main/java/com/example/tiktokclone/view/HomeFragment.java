@@ -78,13 +78,13 @@ public class HomeFragment extends Fragment {
         new Runnable() {
             @Override
             public void run() {
-                clickCallApi();
+                handleGetListVideo();
             }
         }.run();
     }
 
 
-    private void clickCallApi() {
+    private void handleGetListVideo() {
         ApiService.apiService.getListVideo("for-you", 1).enqueue(new Callback<VideoTiktok>() {
             @Override
             public void onResponse(Call<VideoTiktok> call, Response<VideoTiktok> response) {
