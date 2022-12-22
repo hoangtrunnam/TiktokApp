@@ -9,9 +9,12 @@
     <!-- TODO: Update blank fragment layout -->
     <include layout="@layout/layout_main"/>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcListVideo"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
 
 </FrameLayout>

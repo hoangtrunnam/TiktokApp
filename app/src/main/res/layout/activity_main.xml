@@ -16,15 +16,7 @@
 
     </FrameLayout>
 
-    <Button
-        android:id="@+id/btn_call_api"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="press to call api"
-        app:layout_constraintBottom_toBottomOf="@+id/frame_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

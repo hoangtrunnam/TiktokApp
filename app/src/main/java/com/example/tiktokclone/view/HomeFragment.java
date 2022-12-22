@@ -46,6 +46,13 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private VideoTiktokAdapter getAdapter() {
+        if(videoTiktokAdapter == null) {
+            videoTiktokAdapter = new VideoTiktokAdapter(new ArrayList<>());
+        }
+        return videoTiktokAdapter;
+    }
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -106,8 +113,9 @@ public class HomeFragment extends Fragment {
                                 videoTiktok.getData().get(i).getUser()
                         ));
                     }
-                    videoTiktokAdapter = new VideoTiktokAdapter(getContext(), dataVideo);
-                    videoTiktokAdapter.notifyDataSetChanged();
+//                    videoTiktokAdapter = new VideoTiktokAdapter(getContext(), dataVideo);
+//                    videoTiktokAdapter.notifyDataSetChanged();
+                    getAdapter().updateData(dataVideo);
                     Toast.makeText(getActivity(), videoTiktok.getMeta().getPagination().getLinks().getNext(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -124,7 +132,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = view.findViewById(R.id.rcListVideo);
-        recyclerView.setAdapter(videoTiktokAdapter);
+        recyclerView.setAdapter(getAdapter());
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 

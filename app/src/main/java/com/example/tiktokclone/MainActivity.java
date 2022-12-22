@@ -29,8 +29,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btnCallApi;
-
     ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +50,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        btnCallApi = findViewById(R.id.btn_call_api);
-        btnCallApi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "vao man home", Toast.LENGTH_LONG).show();
-            }
 
-
-        });
 
 //        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 //        getWindow().setStatusBarColor(ContextCompat.getColor(MainActivity.this,R.color.white));

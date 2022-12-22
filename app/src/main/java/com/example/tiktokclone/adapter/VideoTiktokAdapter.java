@@ -13,6 +13,7 @@ import com.example.tiktokclone.R;
 import com.example.tiktokclone.model.videoTiktok.Data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.VideoTiktokHolder> {
     private ArrayList<Data> listVideoTiktok;
@@ -21,6 +22,16 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
     public VideoTiktokAdapter( Context context, ArrayList<Data> listVideoTiktok) {
         this.context = context;
         this.listVideoTiktok = listVideoTiktok;
+    }
+
+    public VideoTiktokAdapter(ArrayList<Data> listVideoTiktok) {
+        this.listVideoTiktok = listVideoTiktok;
+    }
+
+    public void updateData(List<Data> data) {
+        listVideoTiktok.clear();
+        listVideoTiktok.addAll(data);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -36,9 +47,9 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
         holder.userName.setText(videoTiktok.getUser().getFirst_name());
         holder.description.setText(videoTiktok.getDescription());
         holder.music.setText(videoTiktok.getMusic());
-        holder.likeCount.setText(videoTiktok.getLikes_count());
-        holder.shareCount.setText(videoTiktok.getShares_count());
-        holder.commentCount.setText(videoTiktok.getComments_count());
+        holder.likeCount.setText(videoTiktok.getLikes_count() + "");
+        holder.shareCount.setText(videoTiktok.getShares_count() + "");
+        holder.commentCount.setText(videoTiktok.getComments_count() + "");
     }
 
     @Override
