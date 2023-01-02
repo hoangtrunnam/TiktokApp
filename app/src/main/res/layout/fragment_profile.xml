@@ -1,14 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Profile fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/hoso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="Hồ sơ"
+            android:textStyle="bold"></TextView>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:src="@mipmap/ic_launcher_round"></de.hdodenhof.circleimageview.CircleImageView>
+
+        <TextView
+            android:id="@+id/tennguoidung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="\@username"
+            android:textStyle="bold"></TextView>
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="250dp"
+            android:layout_gravity="center"
+            android:text="Đăng nhập hoặc đăng ký"
+            android:backgroundTint="@color/red_tiktok"
+            ></Button>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/dangollow"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="230dp"
+            android:layout_marginLeft="70dp"
+            android:gravity="center"
+            android:text="0"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/follower"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/dangollow"
+            android:layout_marginTop="230dp"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:text="0"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/thich"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/follower"
+            android:layout_marginTop="230dp"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:text="0"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/dangollowtxt"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/dangollow"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="55dp"
+            android:gravity="center"
+            android:text="Đang Follow"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/followertxt"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/follower"
+            app:layout_constraintLeft_toRightOf="@id/dangollowtxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="0dp"
+            android:gravity="center"
+            android:text="Follower"
+            android:textStyle="bold"></TextView>
+        <TextView
+            android:id="@+id/thichtxt"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/follower"
+            app:layout_constraintLeft_toRightOf="@id/followertxt"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="0dp"
+            android:gravity="center"
+            android:text="Thích"
+            android:textStyle="bold"></TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 </FrameLayout>

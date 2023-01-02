@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Sign up for TikTok"
+    android:textSize="20dp"
+    android:textStyle="bold"
+    android:gravity="center"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="170dp"
+    android:id="@+id/signupfortiktok"
+    ></TextView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/signup_username"
+        app:layout_constraintTop_toBottomOf="@+id/signupfortiktok"
+        android:layout_marginTop="30dp"
+        android:background="@color/blue_pastel_tiktok"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="Enter your username"
+        ></EditText>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/signup_password"
+        app:layout_constraintTop_toBottomOf="@+id/signup_username"
+        android:layout_marginTop="30dp"
+        android:background="@color/grey_pastel_tiktok"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="Enter your password"
+        ></EditText>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/signup_repassword"
+        app:layout_constraintTop_toBottomOf="@+id/signup_password"
+        android:layout_marginTop="30dp"
+        android:background="@color/grey_pastel_tiktok"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:hint="Re enter your password"
+        ></EditText>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/btn_signup"
+        app:layout_constraintTop_toBottomOf="@id/signup_repassword"
+        android:layout_marginTop="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Sign up"
+        android:backgroundTint="@color/red_tiktok"
+        ></Button>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have an account ?"
+        android:textSize="15dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_signup"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/already"
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log in"
+        android:textSize="15dp"
+        app:layout_constraintTop_toBottomOf="@id/btn_signup"
+        android:layout_marginTop="50dp"
+        app:layout_constraintLeft_toRightOf="@id/already"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/link_login"
+        android:textColor="@color/red_tiktok"
+        android:textStyle="bold"
+
+        ></TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
