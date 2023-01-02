@@ -1,10 +1,13 @@
 package com.example.tiktokclone.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,6 +53,9 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
         holder.likeCount.setText(videoTiktok.getLikes_count() + "");
         holder.shareCount.setText(videoTiktok.getShares_count() + "");
         holder.commentCount.setText(videoTiktok.getComments_count() + "");
+        Uri uri = Uri.parse(videoTiktok.getFile_url());
+        holder.videoView.setVideoURI(uri);
+        holder.videoView.start();
     }
 
     @Override
@@ -68,6 +74,7 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
         private TextView likeCount;
         private TextView commentCount;
         private TextView shareCount;
+        private VideoView videoView;
 
 
         public VideoTiktokHolder(@NonNull View itemView) {
@@ -78,6 +85,11 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
             likeCount = itemView.findViewById(R.id.likeCount);
             commentCount = itemView.findViewById(R.id.commentCount);
             shareCount = itemView.findViewById(R.id.shareCount);
+            videoView = (VideoView) itemView.findViewById(R.id.videoId);
+
+//            itemView.setOnClickListener(v -> {
+//                Toast.makeText(context, "Item clicked: ",Toast.LENGTH_SHORT).show();
+//            });
         }
     }
 }

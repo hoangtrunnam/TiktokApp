@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.SnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.MediaController;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.example.tiktokclone.R;
 import com.example.tiktokclone.adapter.VideoTiktokAdapter;
@@ -41,6 +43,9 @@ public class HomeFragment extends Fragment {
     private  ArrayList<Data> dataVideo = new ArrayList<>();
     private VideoTiktokAdapter videoTiktokAdapter;
     private RecyclerView recyclerView;
+
+    private VideoView videoView;
+    private MediaController mediaController;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -78,6 +83,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -88,6 +96,24 @@ public class HomeFragment extends Fragment {
                 handleGetListVideo();
             }
         }.run();
+
+//        handleVideo();
+    }
+
+    private void handleVideo() {
+
+        videoView = (VideoView) getView().findViewById(R.id.videoId);
+
+        if (this.mediaController == null) {
+            this.mediaController = new MediaController(getActivity());
+
+            // Set the videoView that acts as the anchor for the MediaController.
+            this.mediaController.setAnchorView(videoView);
+
+            // Set MediaController for VideoView
+            this.videoView.setMediaController(mediaController);
+        }
+
     }
 
 

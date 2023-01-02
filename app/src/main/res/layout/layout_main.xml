@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
+    <VideoView
+
+        android:id="@+id/videoId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="64dp"
@@ -152,5 +158,6 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

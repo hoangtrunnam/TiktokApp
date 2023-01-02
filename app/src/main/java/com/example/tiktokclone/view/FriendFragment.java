@@ -8,8 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tiktokclone.R;
+import com.example.tiktokclone.api.ApiService;
+import com.example.tiktokclone.model.authen.Login;
+import com.example.tiktokclone.model.authen.UserLogin;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +36,9 @@ public class FriendFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private EditText email;
+    private EditText passWord;
+    private Button btnLogin;
 
     public FriendFragment() {
         // Required empty public constructor
@@ -57,12 +69,60 @@ public class FriendFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        email = getActivity().findViewById(R.id.emailLogin);
+        passWord = getActivity().findViewById(R.id.password);
+//        btnLogin = getActivity().findViewById(R.id.btnLogin);
+
+//        btnLogin.setOnClickListener(view -> {clickCallApi();});
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_friend, container, false);
+        View view = inflater.inflate(R.layout.fragment_friend,container, false);
+        btnLogin = (Button)view.findViewById(R.id.btnLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserLogin userLogin = new UserLogin("hoangnam123@gmail.com", "123456");
+                ApiService.apiService.handleLogin(userLogin).enqueue(new Callback<Login>() {
+                    @Override
+                    public void onResponse(Call<Login> call, Response<Login> response) {
+                        Login login = response.body();
+                        if(login != null) {
+                            Toast.makeText(getActivity(), "login successfully!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Login> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+        return view;
     }
+
+
+    private void clickCallApi() {
+        UserLogin userLogin = new UserLogin(email.toString(),passWord.toString());
+        ApiService.apiService.handleLogin(userLogin).enqueue(new Callback<Login>() {
+            @Override
+            public void onResponse(Call<Login> call, Response<Login> response) {
+                Login login = response.body();
+                if(login != null) {
+                    Toast.makeText(getActivity(), "login successfully!", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Login> call, Throwable t) {
+
+            }
+        });
+    }
+
 }

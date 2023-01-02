@@ -11,6 +11,29 @@
         android:layout_height="match_parent"
         android:text="friend fragment" />
 
+    <EditText
+        android:id="@+id/emailLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="60dp"
+        android:hint="email" />
+
+    <EditText
+        android:id="@+id/password"
+        android:hint="pass word"
+        android:layout_marginHorizontal="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="200dp"
+        android:text="Login" />
 
 
 </FrameLayout>
