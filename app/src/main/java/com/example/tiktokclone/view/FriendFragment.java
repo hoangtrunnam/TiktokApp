@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,8 +71,7 @@ public class FriendFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        email = getActivity().findViewById(R.id.emailLogin);
-        passWord = getActivity().findViewById(R.id.password);
+
 //        btnLogin = getActivity().findViewById(R.id.btnLogin);
 
 //        btnLogin.setOnClickListener(view -> {clickCallApi();});
@@ -82,17 +82,22 @@ public class FriendFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_friend,container, false);
+        email = (EditText)view.findViewById(R.id.emailLogin);
+        passWord = (EditText)view.findViewById(R.id.password);
+
         btnLogin = (Button)view.findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserLogin userLogin = new UserLogin("hoangnam123@gmail.com", "123456");
+//                UserLogin userLogin = new UserLogin(email.getText().toString(), passWord.getText().toString());
+                UserLogin userLogin = new UserLogin(email.getText().toString(), passWord.getText().toString());
                 ApiService.apiService.handleLogin(userLogin).enqueue(new Callback<Login>() {
                     @Override
                     public void onResponse(Call<Login> call, Response<Login> response) {
                         Login login = response.body();
                         if(login != null) {
                             Toast.makeText(getActivity(), "login successfully!", Toast.LENGTH_LONG).show();
+                            Log.v("email value=", email.getText().toString());
                         }
                     }
 

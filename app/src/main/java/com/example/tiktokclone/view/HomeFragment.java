@@ -97,23 +97,6 @@ public class HomeFragment extends Fragment {
             }
         }.run();
 
-//        handleVideo();
-    }
-
-    private void handleVideo() {
-
-        videoView = (VideoView) getView().findViewById(R.id.videoId);
-
-        if (this.mediaController == null) {
-            this.mediaController = new MediaController(getActivity());
-
-            // Set the videoView that acts as the anchor for the MediaController.
-            this.mediaController.setAnchorView(videoView);
-
-            // Set MediaController for VideoView
-            this.videoView.setMediaController(mediaController);
-        }
-
     }
 
 
