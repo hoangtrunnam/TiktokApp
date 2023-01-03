@@ -19,7 +19,7 @@
             android:layout_marginTop="15dp"
             android:gravity="center"
             android:text="Hồ sơ"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avatar"
@@ -27,7 +27,7 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            android:src="@mipmap/ic_launcher_round"></de.hdodenhof.circleimageview.CircleImageView>
+            android:src="@mipmap/ic_launcher_round"/>
 
         <TextView
             android:id="@+id/tennguoidung"
@@ -36,15 +36,16 @@
             android:layout_marginTop="15dp"
             android:gravity="center"
             android:text="\@username"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold"/>
         <Button
+            android:id="@+id/btnNavigateLogin"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="250dp"
             android:layout_gravity="center"
             android:text="Đăng nhập hoặc đăng ký"
             android:backgroundTint="@color/red_tiktok"
-            ></Button>
+            />
     </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -59,7 +60,7 @@
             android:layout_marginLeft="70dp"
             android:gravity="center"
             android:text="0"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/follower"
             android:layout_width="70dp"
@@ -70,7 +71,7 @@
             android:layout_marginLeft="30dp"
             android:gravity="center"
             android:text="0"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/thich"
             android:layout_width="70dp"
@@ -81,7 +82,7 @@
             android:layout_marginLeft="30dp"
             android:gravity="center"
             android:text="0"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/dangollowtxt"
             android:layout_width="100dp"
@@ -92,7 +93,7 @@
             android:layout_marginLeft="55dp"
             android:gravity="center"
             android:text="Đang Follow"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/followertxt"
             android:layout_width="100dp"
@@ -103,7 +104,7 @@
             android:layout_marginLeft="0dp"
             android:gravity="center"
             android:text="Follower"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/thichtxt"
             android:layout_width="100dp"
@@ -114,7 +115,7 @@
             android:layout_marginLeft="0dp"
             android:gravity="center"
             android:text="Thích"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -7,8 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.tiktokclone.R;
+import com.example.tiktokclone.model.authen.Login;
+import com.example.tiktokclone.store.DataLocalManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +28,7 @@ public class MailBoxFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TextView tvToken;
 
     public MailBoxFragment() {
         // Required empty public constructor
@@ -55,12 +59,21 @@ public class MailBoxFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mail_box, container, false);
+        View view = inflater.inflate(R.layout.fragment_mail_box, container, false);
+        tvToken = view.findViewById(R.id.token);
+        Login userLogin = DataLocalManager.getUser();
+        if (userLogin != null) {
+            tvToken.setText(userLogin.getMeta().getToken());
+        }
+
+        return view;
     }
 }
