@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include layout="@layout/custom_actionbar" />
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,7 +14,7 @@
     android:textStyle="bold"
     android:gravity="center"
     android:id="@+id/login"
-    ></TextView>
+    />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +26,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="30dp"
         android:id="@+id/emailorusername"
-        ></TextView>
+        />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -37,7 +38,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        ></EditText>
+        />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -49,7 +50,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        ></EditText>
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,7 +61,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="30dp"
         android:id="@+id/forgot"
-        ></TextView>
+        />
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -73,7 +74,7 @@
         android:layout_marginRight="30dp"
         android:text="Log in"
         android:backgroundTint="@color/red_tiktok"
-        ></Button>
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,7 +85,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="30dp"
         android:id="@+id/donthaveanaccount"
-        ></TextView>
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,8 +98,9 @@
         android:id="@+id/link_signup"
         android:textColor="@color/red_tiktok"
         android:textStyle="bold"
-
-        ></TextView>
+        android:onClick="onClick"
+        android:clickable="true"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,4 +10,6 @@
     <color name="red_tiktok">#FE2C55</color>
     <color name="blue_pastel_tiktok">#C0DEFF</color>
     <color name="grey_pastel_tiktok">#EEEEEE</color>
+    <color name="transparent">#80ffffff</color>
+
 </resources>
