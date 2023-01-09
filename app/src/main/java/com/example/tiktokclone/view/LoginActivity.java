@@ -1,7 +1,12 @@
 package com.example.tiktokclone.view;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -12,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tiktokclone.R;
+import com.example.tiktokclone.SplashActivity;
 import com.example.tiktokclone.api.ApiService;
 import com.example.tiktokclone.model.authen.Login;
 import com.example.tiktokclone.model.authen.UserLogin;
@@ -71,4 +77,5 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(i);
         });
     }
+
 }
