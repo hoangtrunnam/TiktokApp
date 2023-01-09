@@ -7,7 +7,7 @@
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Sign up for TikTok"
+    android:text="Đăng ký"
     android:textSize="20dp"
     android:textStyle="bold"
     android:gravity="center"
@@ -16,43 +16,43 @@
     android:id="@+id/signupfortiktok"
     />
     <EditText
+        android:background="@drawable/bg_edittext"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/signup_username"
         app:layout_constraintTop_toBottomOf="@+id/signupfortiktok"
         android:layout_marginTop="30dp"
-        android:background="@color/blue_pastel_tiktok"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="Enter your username"
+        android:hint="Số điện thoại"
         />
     <EditText
+        android:background="@drawable/bg_edittext"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/signup_password"
         app:layout_constraintTop_toBottomOf="@+id/signup_username"
         android:layout_marginTop="30dp"
-        android:background="@color/grey_pastel_tiktok"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="Enter your password"
+        android:hint="Mật khẩu"
         />
     <EditText
+        android:background="@drawable/bg_edittext"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/signup_repassword"
         app:layout_constraintTop_toBottomOf="@+id/signup_password"
         android:layout_marginTop="30dp"
-        android:background="@color/grey_pastel_tiktok"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:hint="Re enter your password"
+        android:hint="Nhập lại mật khẩu"
         />
     <Button
         android:layout_width="match_parent"
@@ -64,13 +64,13 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:text="Sign up"
+        android:text="Đăng ký"
         android:backgroundTint="@color/red_tiktok"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already have an account ?"
+        android:text="Bạn đã có tài khoản ?"
         android:textSize="15dp"
         app:layout_constraintTop_toBottomOf="@id/btn_signup"
         android:layout_marginTop="50dp"
@@ -81,7 +81,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log in"
+        android:text="Quay lại đăng nhập"
         android:textSize="15dp"
         app:layout_constraintTop_toBottomOf="@id/btn_signup"
         android:layout_marginTop="50dp"
