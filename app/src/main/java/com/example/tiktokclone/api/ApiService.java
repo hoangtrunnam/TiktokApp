@@ -4,6 +4,7 @@ import com.example.tiktokclone.model.authen.Login;
 import com.example.tiktokclone.model.authen.SignUp;
 import com.example.tiktokclone.model.authen.SignUpReponse;
 import com.example.tiktokclone.model.authen.UserLogin;
+import com.example.tiktokclone.model.profile.RootProfile;
 import com.example.tiktokclone.model.videoTiktok.VideoTiktok;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -13,6 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -33,5 +35,8 @@ public interface ApiService {
 
     @POST("api/auth/register")
     Call<SignUpReponse> handleSignUp(@Body SignUp signUp);
+
+    @GET("api/auth/me")
+    Call<RootProfile> getCurrentUser(@Header("Authorization") String authorization);
 
 }

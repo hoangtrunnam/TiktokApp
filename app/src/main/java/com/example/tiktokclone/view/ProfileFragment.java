@@ -10,8 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.tiktokclone.R;
+import com.example.tiktokclone.model.authen.Login;
+import com.example.tiktokclone.store.DataLocalManager;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +36,11 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private Button btnNavigationLogin;
-
+    private TextView nickName;
+    private TextView followingCount;
+    private TextView followedCount;
+    private TextView likeCount;
+    private CircleImageView avatar;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -67,8 +78,28 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_profile,container, false);
-
         btnNavigationLogin = (Button)view.findViewById(R.id.btnNavigateLogin);
+        nickName = view.findViewById(R.id.tennguoidung);
+        followingCount = view.findViewById(R.id.dangollow);
+        followedCount = view.findViewById(R.id.follower);
+        likeCount = view.findViewById(R.id.thich);
+        avatar = (CircleImageView)view.findViewById(R.id.avatar);
+
+        Login userLogin = DataLocalManager.getUser();
+        if (userLogin != null) {
+            btnNavigationLogin.setVisibility(View.GONE);
+            nickName.setText(userLogin.getData().getNickname());
+            followingCount.setText(userLogin.getData().getFollowings_count() + ""); //maybe null
+            followedCount.setText(userLogin.getData().getFollowers_count() + ""); //maybe null
+            likeCount.setText(userLogin.getData().getLikes_count() + "");
+            Glide.with(getActivity())
+                    .load(userLogin.getData().getAvatar())
+                    .into(avatar);
+        }
+
+
+
+
         btnNavigationLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,4 +110,6 @@ public class ProfileFragment extends Fragment {
 
         return view;
     }
+
+
 }
