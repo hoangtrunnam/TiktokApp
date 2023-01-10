@@ -7,7 +7,37 @@
     tools:context=".view.ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="48dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iconAddPeople"
+            android:src="@drawable/add_people_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="16dp"
+            />
+
+        <ImageView
+            android:id="@+id/iconCoin"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/coin_yellow_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+
+        <ImageView
+            android:id="@+id/iconMenu"
+            android:layout_marginLeft="260dp"
+            android:src="@drawable/menu_icon_three_line"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -81,15 +111,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
             <TextView
                 android:id="@+id/hoso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:text="Hồ sơ"
                 android:textStyle="bold" />
@@ -102,14 +135,31 @@
                 android:layout_marginTop="40dp"
                 android:src="@drawable/camera_icon" />
 
-            <TextView
-                android:id="@+id/tennguoidung"
+
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
                 android:gravity="center"
-                android:text="\@username"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tennguoidung"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:paddingBottom="14dp"
+                    android:text="\@username"
+                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/iconQr"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/qr_code_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
             <Button
                 android:id="@+id/btnUpdateProfile"
