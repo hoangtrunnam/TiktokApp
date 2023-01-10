@@ -41,6 +41,7 @@ public class ProfileFragment extends Fragment {
     private TextView followedCount;
     private TextView likeCount;
     private CircleImageView avatar;
+    private Button btnUpdateProfile;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -79,15 +80,19 @@ public class ProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile,container, false);
         btnNavigationLogin = (Button)view.findViewById(R.id.btnNavigateLogin);
+        btnUpdateProfile = (Button)view.findViewById(R.id.btnUpdateProfile);
         nickName = view.findViewById(R.id.tennguoidung);
         followingCount = view.findViewById(R.id.dangollow);
         followedCount = view.findViewById(R.id.follower);
         likeCount = view.findViewById(R.id.thich);
         avatar = (CircleImageView)view.findViewById(R.id.avatar);
 
+        btnUpdateProfile.setVisibility(View.GONE);
+
         Login userLogin = DataLocalManager.getUser();
         if (userLogin != null) {
             btnNavigationLogin.setVisibility(View.GONE);
+            btnUpdateProfile.setVisibility(View.VISIBLE);
             nickName.setText(userLogin.getData().getNickname());
             followingCount.setText(userLogin.getData().getFollowings_count() + ""); //maybe null
             followedCount.setText(userLogin.getData().getFollowers_count() + ""); //maybe null
