@@ -8,17 +8,19 @@
     <include
         android:id="@+id/include"
         layout="@layout/custom_actionbar" />
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Đăng nhập"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_marginTop="170dp"
-    android:textSize="25dp"
-    android:textStyle="bold"
-    android:gravity="center"
-    android:id="@+id/login"
-    />
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:gravity="center"
+        android:text=""
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

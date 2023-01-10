@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".view.updateProfile.UpdateProfileMain">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/custom_actionbar" />
+    <View
+        android:background="#DBE0E6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="vertical"
+        android:layout_marginHorizontal="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:src="@drawable/camera_icon" />
+    <TextView
+        android:text="Thay đổi ảnh"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:textFontWeight="700"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="Giới thiệu về bạn"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:textColor="#808080"
+        android:textFontWeight="700"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/editName"
+        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Tên"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:textFontWeight="700"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/userName"
+            android:text="username"
+            android:textSize="16sp"
+            android:textColor="#808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/arrow_right_icon"
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/editTiTokID"
+        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="TikTokID"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:textFontWeight="700"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/userId"
+            android:text="username"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="#808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/arrow_right_icon"
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/copyID"
+        android:layout_gravity="end"
+        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text=""
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:textFontWeight="700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/linkUrlMyTiktok"
+            android:text="TikTok.com/@username"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/copy_icon"
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/editBio"
+        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Tiểu sử"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:textFontWeight="700"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/bio"
+            android:text="Thêm tiểu sử"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="#808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/arrow_right_icon"
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    
+    <View
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="#DBE0E6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:text="Tài khoản mạng xã hội"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:textColor="#808080"
+        android:textFontWeight="700"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/editIns"
+        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Instagram"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:textFontWeight="700"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/insUrl"
+            android:text="Thêm Instagram"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="#808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/arrow_right_icon"
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/editYouTube"
+        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="YouTube"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:textFontWeight="700"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/ytUrl"
+            android:text="Thêm YouTube"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="#808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/arrow_right_icon"
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/editTwitter"
+        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Twitter"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:textFontWeight="700"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/twitterUrl"
+            android:text="Thêm Twitter"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="#808080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/arrow_right_icon"
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+
