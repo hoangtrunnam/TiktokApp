@@ -1,15 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MailBoxFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.MailBoxFragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/token"
+    <LinearLayout
+        android:paddingTop="30dp"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="mailbox_fragment" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:text="Hộp thư"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/message"
+            android:layout_marginRight="10dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/idmailbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tin nhắn"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
-</FrameLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_marginTop="50dp"
+            android:id="@+id/imagemailbox1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@drawable/chat"
+            android:layout_marginBottom="10dp"
+            />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imagemailbox2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@drawable/heart"
+            android:layout_marginBottom="10dp"
+            />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imagemailbox3"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:src="@drawable/people"
+            android:layout_marginBottom="10dp"
+
+            />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imagemailbox4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@drawable/telegram"
+            />
+        <TextView
+            android:paddingTop="30dp"
+            android:textSize="24sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kết nối cộng đồng"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:id="@+id/labelmailbox1"
+            />
+        <TextView
+            android:textSize="24sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chia sẻ video với bạn bè"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:id="@+id/labelmailbox2"
+            />
+        <Button
+            android:id="@+id/btnNavigateLogin2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/red_tiktok"
+            android:text="Đăng nhập hoặc đăng ký"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mailbox_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</LinearLayout>
