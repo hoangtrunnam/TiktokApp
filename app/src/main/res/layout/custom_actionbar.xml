@@ -39,5 +39,18 @@
             android:textSize="20sp"
             android:textColor="#000000"
             android:textStyle="normal" />
+        <TextView
+            style="?android:textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:padding="10sp"
+            android:id="@+id/tvTitleRight"
+            android:text=""
+            android:textFontWeight="500"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:textStyle="normal"/>
     </RelativeLayout>
 </LinearLayout>

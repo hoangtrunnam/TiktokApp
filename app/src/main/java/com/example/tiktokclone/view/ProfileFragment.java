@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.example.tiktokclone.R;
 import com.example.tiktokclone.model.authen.Login;
 import com.example.tiktokclone.store.DataLocalManager;
+import com.example.tiktokclone.view.updateProfile.UpdateProfileMain;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -42,6 +44,9 @@ public class ProfileFragment extends Fragment {
     private TextView likeCount;
     private CircleImageView avatar;
     private Button btnUpdateProfile;
+    private ImageView btnAddPeople;
+    private ImageView iconCoin;
+    private ImageView btnMenu, iconQr;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -86,20 +91,41 @@ public class ProfileFragment extends Fragment {
         followedCount = view.findViewById(R.id.follower);
         likeCount = view.findViewById(R.id.thich);
         avatar = (CircleImageView)view.findViewById(R.id.avatar);
+        btnAddPeople = view.findViewById(R.id.iconAddPeople);
+        btnMenu = view.findViewById(R.id.iconMenu);
+        iconCoin = view.findViewById(R.id.iconCoin);
+        iconQr = view.findViewById(R.id.iconQr);
 
         btnUpdateProfile.setVisibility(View.GONE);
+        btnAddPeople.setVisibility(View.GONE);
+        btnMenu.setVisibility(View.GONE);
+        iconCoin.setVisibility(View.GONE);
+        iconQr.setVisibility(View.GONE);
 
         Login userLogin = DataLocalManager.getUser();
         if (userLogin != null) {
             btnNavigationLogin.setVisibility(View.GONE);
             btnUpdateProfile.setVisibility(View.VISIBLE);
-            nickName.setText(userLogin.getData().getNickname());
+            btnAddPeople.setVisibility(View.VISIBLE);
+            btnMenu.setVisibility(View.VISIBLE);
+            iconCoin.setVisibility(View.VISIBLE);
+            iconQr.setVisibility(View.VISIBLE);
+
+            nickName.setText("@" + userLogin.getData().getNickname());
             followingCount.setText(userLogin.getData().getFollowings_count() + ""); //maybe null
             followedCount.setText(userLogin.getData().getFollowers_count() + ""); //maybe null
             likeCount.setText(userLogin.getData().getLikes_count() + "");
             Glide.with(getActivity())
                     .load(userLogin.getData().getAvatar())
                     .into(avatar);
+
+            btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(getActivity(), UpdateProfileMain.class);
+                    startActivity(i);
+                }
+            });
         }
 
 
