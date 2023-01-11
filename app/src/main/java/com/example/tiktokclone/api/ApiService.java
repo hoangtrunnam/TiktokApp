@@ -2,6 +2,11 @@ package com.example.tiktokclone.api;
 
 import com.example.tiktokclone.model.authen.Login;
 import com.example.tiktokclone.model.authen.UserLogin;
+<<<<<<< Updated upstream
+=======
+import com.example.tiktokclone.model.profile.RootProfile;
+import com.example.tiktokclone.model.userSuggest.UserSuggest;
+>>>>>>> Stashed changes
 import com.example.tiktokclone.model.videoTiktok.VideoTiktok;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -29,4 +34,16 @@ public interface ApiService {
     @POST("api/auth/login")
     Call<Login> handleLogin(@Body UserLogin userLogin);
 
+<<<<<<< Updated upstream
+=======
+    @POST("api/auth/register")
+    Call<SignUpReponse> handleSignUp(@Body SignUp signUp);
+
+    @GET("api/auth/me")
+    Call<RootProfile> getCurrentUser(@Header("Authorization") String authorization);
+
+    @GET("api/users/suggested")
+    Call<UserSuggest> getSuggestUser(@Query("page") int page, @Query("per_page") int per_page);
+
+>>>>>>> Stashed changes
 }
