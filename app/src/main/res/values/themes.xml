@@ -16,5 +16,15 @@
     <style name="Theme.TiktokClone.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#B3B3B3</item>
+        <item name="colorPrimaryVariant">#B3B3B3</item>
+        <item name="colorOnPrimary">#B3B3B3</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#B3B3B3</item>
+        <item name="colorSecondaryVariant">#B3B3B3</item>
+        <item name="colorOnSecondary">#B3B3B3</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">#B3B3B3</item>
     </style>
 </resources>
