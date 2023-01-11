@@ -21,6 +21,7 @@
             android:layout_marginLeft="16dp"
             />
 
+
         <ImageView
             android:id="@+id/iconCoin"
             android:layout_marginLeft="16dp"
@@ -35,6 +36,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"/>
 
+
     </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_marginTop="40dp"
@@ -46,7 +48,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="230dp"
+            android:layout_marginTop="210dp"
             android:layout_marginLeft="70dp"
             android:gravity="center"
             android:text="0"
@@ -57,7 +59,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@id/dangollow"
-            android:layout_marginTop="230dp"
+            android:layout_marginTop="210dp"
             android:layout_marginLeft="30dp"
             android:gravity="center"
             android:text="0"
@@ -68,7 +70,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@id/follower"
-            android:layout_marginTop="230dp"
+            android:layout_marginTop="210dp"
             android:layout_marginLeft="30dp"
             android:gravity="center"
             android:text="0"
