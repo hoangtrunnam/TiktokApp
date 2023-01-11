@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
 
     private VideoTiktokAdapter getAdapter() {
         if(videoTiktokAdapter == null) {
-            videoTiktokAdapter = new VideoTiktokAdapter(new ArrayList<>());
+            videoTiktokAdapter = new VideoTiktokAdapter(getContext(),new ArrayList<>());
         }
         return videoTiktokAdapter;
     }

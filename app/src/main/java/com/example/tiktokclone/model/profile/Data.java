@@ -1,4 +1,4 @@
-package com.example.tiktokclone.model.authen;
+package com.example.tiktokclone.model.profile;
 
 public class Data {
     private int id;
@@ -247,6 +247,4 @@ public class Data {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
-
-
 }
