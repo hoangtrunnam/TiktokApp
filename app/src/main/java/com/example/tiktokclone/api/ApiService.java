@@ -5,6 +5,8 @@ import com.example.tiktokclone.model.authen.SignUp;
 import com.example.tiktokclone.model.authen.SignUpReponse;
 import com.example.tiktokclone.model.authen.UserLogin;
 
+import com.example.tiktokclone.model.followUser.FollowUser;
+import com.example.tiktokclone.model.otherProfile.OtherProfile;
 import com.example.tiktokclone.model.profile.RootProfile;
 import com.example.tiktokclone.model.userSuggest.UserSuggest;
 
@@ -12,6 +14,7 @@ import com.example.tiktokclone.model.videoTiktok.VideoTiktok;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,6 +22,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -42,6 +46,16 @@ public interface ApiService {
     @GET("api/auth/me")
     Call<RootProfile> getCurrentUser(@Header("Authorization") String authorization);
 
+    @POST("api/auth/me?_method=PATCH")
+    Call<RootProfile> updateProfile(@Header("Authorization") String authorization, @Body RequestBody body);
+
     @GET("api/users/suggested")
     Call<UserSuggest> getSuggestUser(@Query("page") int page, @Query("per_page") int per_page);
+
+    @GET("api/users/{nickName}")
+    Call<OtherProfile> getProfileUserByNickName(@Path("nickName") String nickName);
+
+    @POST("api/users/{idUser}/follow")
+    Call<FollowUser> followUser(@Header("Authorization") String authorization,@Path("idUser") int idUser);
+
 }

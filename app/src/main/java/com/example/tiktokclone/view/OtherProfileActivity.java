@@ -2,8 +2,11 @@ package com.example.tiktokclone.view;
 
 import static java.security.AccessController.getContext;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -11,18 +14,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.tiktokclone.R;
 import com.example.tiktokclone.adapter.ItemAdapter;
 import com.example.tiktokclone.adapter.VideoTiktokAdapter;
 import com.example.tiktokclone.api.ApiService;
+import com.example.tiktokclone.model.authen.Login;
+import com.example.tiktokclone.model.followUser.FollowUser;
+import com.example.tiktokclone.model.otherProfile.OtherProfile;
 import com.example.tiktokclone.model.userSuggest.Datum;
 
 import com.example.tiktokclone.model.userSuggest.UserSuggest;
 import com.example.tiktokclone.model.videoTiktok.Data;
 import com.example.tiktokclone.model.videoTiktok.VideoTiktok;
+import com.example.tiktokclone.store.DataLocalManager;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,17 +40,67 @@ public class OtherProfileActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     ItemAdapter mRecyclerViewAdapter;
     private ArrayList<Datum> listUserSuggest = new ArrayList<>();
+    private CircleImageView avatar;
+    private TextView nickName;
+    private TextView following;
+    private TextView follower;
+    private TextView likeCount;
+    private Button btnFollow;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        String nickName = extras.getString("nickNameOtherProfile");
+        String nicknameApi = "@" + nickName;
+        int idUser = Integer.parseInt(extras.getString("idUser"));
+
         new Runnable() {
             @Override
             public void run() {
                 handlerGetSuggestUser();
+                handlerGetProfileByNickName(nicknameApi);
             }
         }.run();
+
+        btnFollow = findViewById(R.id.profile_btnFollow);
+
+        btnFollow.setOnClickListener(view -> {
+            Login userLogin = DataLocalManager.getUser();
+            if (userLogin != null) {
+                // đang ko follow đc user
+                ApiService.apiService.followUser(userLogin.getMeta().getToken(),idUser).enqueue(new Callback<FollowUser>() {
+                    @Override
+                    public void onResponse(Call<FollowUser> call, Response<FollowUser> response) {
+                        FollowUser followUser = response.body();
+                        if (followUser != null) {
+                            Toast.makeText(OtherProfileActivity.this, "call api okok", Toast.LENGTH_SHORT).show();
+                            if (followUser.getData().isIs_followed()) {
+                                btnFollow.setText("Tin nhắn");
+                                btnFollow.setBackgroundResource(R.color.white);
+                            } else {
+                                btnFollow.setText("Follow");
+                                btnFollow.setBackgroundResource(R.color.red_tiktok);
+                            }
+                        } else {
+                            Toast.makeText(OtherProfileActivity.this, "call api false", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<FollowUser> call, Throwable t) {
+                        Toast.makeText(OtherProfileActivity.this, "connect err", Toast.LENGTH_SHORT).show();
+                        Log.d("Exception", "onFailure: " + t.getMessage());
+                    }
+                });
+            }
+
+        });
+
+
     }
 
     private void handlerGetSuggestUser() {
@@ -84,6 +143,36 @@ public class OtherProfileActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserSuggest> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void handlerGetProfileByNickName(String nicknameApi) {
+
+        avatar = findViewById(R.id.profile_avatar);
+        nickName = findViewById(R.id.profile_tennguoidung);
+        following = findViewById(R.id.profile_dangollow);
+        follower = findViewById(R.id.profile_follower);
+        likeCount = findViewById(R.id.profile_thich);
+
+        ApiService.apiService.getProfileUserByNickName(nicknameApi).enqueue(new Callback<OtherProfile>() {
+            @Override
+            public void onResponse(Call<OtherProfile> call, Response<OtherProfile> response) {
+                OtherProfile otherProfile = response.body();
+                if(otherProfile != null) {
+                    Glide.with(OtherProfileActivity.this)
+                            .load(otherProfile.getData().getAvatar())
+                            .into(avatar);
+                    nickName.setText("@" + otherProfile.getData().getNickname());
+                    following.setText(otherProfile.getData().getFollowings_count() + "");
+                    follower.setText(otherProfile.getData().getFollowers_count() + "");
+                    likeCount.setText(otherProfile.getData().getLikes_count() + "");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OtherProfile> call, Throwable t) {
 
             }
         });

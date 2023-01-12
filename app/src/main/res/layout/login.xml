@@ -35,6 +35,7 @@
         />
     <EditText
         android:hint="Số điện thoại"
+        android:text="hoangnam123@gmail.com"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/login_email"
@@ -82,6 +83,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:text="Đăng nhập"
+        android:textColor="#ffffff"
         android:backgroundTint="@color/red_tiktok"
         />
     <TextView

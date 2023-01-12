@@ -56,6 +56,7 @@
         <activity android:name=".view.SignUpActivity" />
         <activity android:name=".view.OtherProfileActivity"/>
         <activity android:name=".view.ProfileSuggestActivity"/>
+
     </application>
 
 </manifest>
