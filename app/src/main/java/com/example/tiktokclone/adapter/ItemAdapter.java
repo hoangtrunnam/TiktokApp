@@ -1,19 +1,26 @@
 package com.example.tiktokclone.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.tiktokclone.MainActivity;
 import com.example.tiktokclone.R;
+import com.example.tiktokclone.SplashActivity;
 import com.example.tiktokclone.model.userSuggest.Datum;
+import com.example.tiktokclone.view.ProfileSuggestActivity;
 
 import java.util.ArrayList;
 
@@ -46,6 +53,19 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.RecyclerViewHo
         Glide.with(context)
                 .load(userSuggest.getAvatar())
                 .into(holder.avatar);
+        holder.avatar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Log.i("TAGaa", "onClick: " + userSuggest.getNickname());
+                openNewActivity();
+            }
+        });
+    }
+
+    public void openNewActivity(){
+        Intent intent = new Intent(this.context, ProfileSuggestActivity.class);
+        context.startActivity(intent);
     }
 
     @Override

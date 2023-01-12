@@ -12,7 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tiktokclone.R;
 import com.example.tiktokclone.model.MailBox;
+import com.example.tiktokclone.view.FriendFragment;
 import com.example.tiktokclone.view.HomeFragment;
+import com.example.tiktokclone.view.MailBoxFragment;
+import com.example.tiktokclone.view.NewVideoFragment;
+import com.example.tiktokclone.view.ProfileFragment;
 
 import java.util.List;
 
@@ -53,7 +57,89 @@ public class MailBoxAdapter extends RecyclerView.Adapter<MailBoxAdapter.DataView
         String date = people.get(position).getDate();
         holder.datemailbox.setText(date);
         String image = people.get(position).getImage();
-        holder.circleimagemailbox.setImageResource(R.drawable.message);
+
+        switch (position){
+            case 0:
+                holder.circleimagemailbox.setImageResource(R.drawable.taylor);
+                break;
+            case 1:
+                holder.circleimagemailbox.setImageResource(R.drawable.theweeknd);
+                break;
+            case 2:
+                holder.circleimagemailbox.setImageResource(R.drawable.ariana);
+                break;
+            case 3:
+                holder.circleimagemailbox.setImageResource(R.drawable.carrdi);
+                break;
+            case 4:
+                holder.circleimagemailbox.setImageResource(R.drawable.adele);
+                break;
+            case 5:
+                holder.circleimagemailbox.setImageResource(R.drawable.sam);
+                break;
+            case 6:
+                holder.circleimagemailbox.setImageResource(R.drawable.tom);
+                break;
+            case 7:
+                holder.circleimagemailbox.setImageResource(R.drawable.harry);
+                break;
+            case 8:
+                holder.circleimagemailbox.setImageResource(R.drawable.nicky);
+                break;
+            case 9:
+                holder.circleimagemailbox.setImageResource(R.drawable.doja);
+                break;
+            case 10:
+                holder.circleimagemailbox.setImageResource(R.drawable.taylor);
+                break;
+            case 11:
+                holder.circleimagemailbox.setImageResource(R.drawable.theweeknd);
+                break;
+            case 12:
+                holder.circleimagemailbox.setImageResource(R.drawable.ariana);
+                break;
+            case 13:
+                holder.circleimagemailbox.setImageResource(R.drawable.carrdi);
+                break;
+            case 14:
+                holder.circleimagemailbox.setImageResource(R.drawable.adele);
+                break;
+            case 15:
+                holder.circleimagemailbox.setImageResource(R.drawable.sam);
+                break;
+            case 16:
+                holder.circleimagemailbox.setImageResource(R.drawable.tom);
+                break;
+            case 17:
+                holder.circleimagemailbox.setImageResource(R.drawable.harry);
+                break;
+            case 18:
+                holder.circleimagemailbox.setImageResource(R.drawable.nicky);
+                break;
+            case 19:
+                holder.circleimagemailbox.setImageResource(R.drawable.doja);
+                break;
+            case 20:
+                holder.circleimagemailbox.setImageResource(R.drawable.taylor);
+                break;
+            case 21:
+                holder.circleimagemailbox.setImageResource(R.drawable.theweeknd);
+                break;
+            case 22:
+                holder.circleimagemailbox.setImageResource(R.drawable.ariana);
+                break;
+            case 23:
+                holder.circleimagemailbox.setImageResource(R.drawable.carrdi);
+                break;
+            case 24:
+                holder.circleimagemailbox.setImageResource(R.drawable.adele);
+                break;
+            case 25:
+                holder.circleimagemailbox.setImageResource(R.drawable.sam);
+                break;
+            default:
+                holder.circleimagemailbox.setImageResource(R.drawable.friend_icon);
+        }
     }
 
     /**
