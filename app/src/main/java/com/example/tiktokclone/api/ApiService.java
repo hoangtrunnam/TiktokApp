@@ -4,7 +4,10 @@ import com.example.tiktokclone.model.authen.Login;
 import com.example.tiktokclone.model.authen.SignUp;
 import com.example.tiktokclone.model.authen.SignUpReponse;
 import com.example.tiktokclone.model.authen.UserLogin;
+
 import com.example.tiktokclone.model.profile.RootProfile;
+import com.example.tiktokclone.model.userSuggest.UserSuggest;
+
 import com.example.tiktokclone.model.videoTiktok.VideoTiktok;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -43,4 +46,6 @@ public interface ApiService {
     @POST("api/auth/me?_method=PATCH")
     Call<RootProfile> updateProfile(@Header("Authorization") String authorization, @Body RequestBody body);
 
+    @GET("api/users/suggested")
+    Call<UserSuggest> getSuggestUser(@Query("page") int page, @Query("per_page") int per_page);
 }

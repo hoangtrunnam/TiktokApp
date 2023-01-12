@@ -125,7 +125,6 @@ public class HomeFragment extends Fragment {
 //                    videoTiktokAdapter = new VideoTiktokAdapter(getContext(), dataVideo);
 //                    videoTiktokAdapter.notifyDataSetChanged();
                     getAdapter().updateData(dataVideo);
-                    Toast.makeText(getActivity(), videoTiktok.getMeta().getPagination().getLinks().getNext(), Toast.LENGTH_SHORT).show();
                 }
             }
 
