@@ -5,6 +5,8 @@ import com.example.tiktokclone.model.authen.SignUp;
 import com.example.tiktokclone.model.authen.SignUpReponse;
 import com.example.tiktokclone.model.authen.UserLogin;
 
+import com.example.tiktokclone.model.followUser.FollowUser;
+import com.example.tiktokclone.model.otherProfile.OtherProfile;
 import com.example.tiktokclone.model.profile.RootProfile;
 import com.example.tiktokclone.model.userSuggest.UserSuggest;
 
@@ -20,6 +22,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -48,4 +51,11 @@ public interface ApiService {
 
     @GET("api/users/suggested")
     Call<UserSuggest> getSuggestUser(@Query("page") int page, @Query("per_page") int per_page);
+
+    @GET("api/users/{nickName}")
+    Call<OtherProfile> getProfileUserByNickName(@Path("nickName") String nickName);
+
+    @POST("api/users/{idUser}/follow")
+    Call<FollowUser> followUser(@Header("Authorization") String authorization,@Path("idUser") int idUser);
+
 }

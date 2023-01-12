@@ -51,6 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
                     SignUpReponse signUpReponse = response.body();
                     if (signUpReponse != null) {
                         Toast.makeText(SignUpActivity.this, "Đăng kí tài khoản thành công, quay lại đăng nhập", Toast.LENGTH_SHORT).show();
+                        finish();
                     } else {
                         Toast.makeText(SignUpActivity.this, "Đã có lỗi xảy ra", Toast.LENGTH_LONG).show();
                     }

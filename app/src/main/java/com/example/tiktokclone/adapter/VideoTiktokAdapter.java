@@ -3,6 +3,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,8 +108,11 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
         holder.avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "heart clicked: ",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, OtherProfileActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("nickNameOtherProfile", videoTiktok.getUser().getNickname());
+                extras.putString("idUser", videoTiktok.getUser_id() + "");
+                intent.putExtras(extras);
                 context.startActivity(intent);
             }
         });
