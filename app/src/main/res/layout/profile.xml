@@ -123,6 +123,8 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:backgroundTint="@color/red_tiktok"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
                 style="@style/Base.CardView"
                 android:text="Follow"/>
             <ImageButton
