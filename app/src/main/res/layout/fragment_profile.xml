@@ -179,6 +179,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="150dp"
                 android:backgroundTint="@color/red_tiktok"
+                android:textColor="#ffffff"
                 android:text="Đăng nhập hoặc đăng ký"
                 android:textAllCaps="false" />
         </androidx.appcompat.widget.LinearLayoutCompat>

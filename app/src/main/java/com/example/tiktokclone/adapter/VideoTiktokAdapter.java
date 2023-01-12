@@ -1,5 +1,4 @@
 package com.example.tiktokclone.adapter;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -51,6 +50,7 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
         return new VideoTiktokAdapter.VideoTiktokHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull VideoTiktokAdapter.VideoTiktokHolder holder, int position) {
         Data videoTiktok = listVideoTiktok.get(position);
@@ -101,10 +101,13 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
                     .into(holder.avatar);
         }
 
-
-
-
-
+        // bat su kien click avatar
+        holder.avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "heart clicked: ",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -138,9 +141,6 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
             avatar = itemView.findViewById(R.id.circleImageView);
             videoView = (VideoView) itemView.findViewById(R.id.videoId);
 
-//            itemView.setOnClickListener(v -> {
-//                Toast.makeText(context, "Item clicked: ",Toast.LENGTH_SHORT).show();
-//            });
         }
     }
 }

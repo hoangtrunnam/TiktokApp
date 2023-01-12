@@ -39,18 +39,21 @@
             android:textSize="20sp"
             android:textColor="#000000"
             android:textStyle="normal" />
+
         <TextView
-            style="?android:textAppearanceLarge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:padding="10sp"
             android:id="@+id/tvTitleRight"
+            style="?android:textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:gravity="end"
+            android:onClick="onClick"
+            android:padding="10dp"
             android:text=""
-            android:textFontWeight="500"
-            android:textSize="20sp"
             android:textColor="#000000"
-            android:textStyle="normal"/>
+            android:textFontWeight="500"
+            android:layout_marginLeft="320dp"
+            android:textSize="20sp"
+            android:textStyle="normal" />
     </RelativeLayout>
 </LinearLayout>

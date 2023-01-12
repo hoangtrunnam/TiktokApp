@@ -9,6 +9,7 @@ import com.example.tiktokclone.model.videoTiktok.VideoTiktok;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -38,5 +39,8 @@ public interface ApiService {
 
     @GET("api/auth/me")
     Call<RootProfile> getCurrentUser(@Header("Authorization") String authorization);
+
+    @POST("api/auth/me?_method=PATCH")
+    Call<RootProfile> updateProfile(@Header("Authorization") String authorization, @Body RequestBody body);
 
 }
