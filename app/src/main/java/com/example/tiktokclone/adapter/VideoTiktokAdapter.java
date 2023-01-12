@@ -1,6 +1,6 @@
 package com.example.tiktokclone.adapter;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.tiktokclone.R;
 import com.example.tiktokclone.model.videoTiktok.Data;
+import com.example.tiktokclone.view.OtherProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,7 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_home,parent, false);
         return new VideoTiktokAdapter.VideoTiktokHolder(view);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull VideoTiktokAdapter.VideoTiktokHolder holder, int position) {
@@ -101,10 +103,15 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
                     .into(holder.avatar);
         }
 
-
-
-
-
+        // bat su kien click avatar
+        holder.avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "heart clicked: ",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, OtherProfileActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -138,9 +145,6 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
             avatar = itemView.findViewById(R.id.circleImageView);
             videoView = (VideoView) itemView.findViewById(R.id.videoId);
 
-//            itemView.setOnClickListener(v -> {
-//                Toast.makeText(context, "Item clicked: ",Toast.LENGTH_SHORT).show();
-//            });
         }
     }
 }

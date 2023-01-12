@@ -38,7 +38,7 @@
         </activity>
         <activity
 
-            android:name=".view.OtherProfileActivity"
+            android:name=".SplashActivity"
 
             android:exported="true">
             <intent-filter>
@@ -54,6 +54,7 @@
 
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.SignUpActivity" />
+        <activity android:name=".view.OtherProfileActivity" />
     </application>
 
 </manifest>
