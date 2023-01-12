@@ -1,5 +1,6 @@
 package com.example.tiktokclone.adapter;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.tiktokclone.R;
 import com.example.tiktokclone.model.videoTiktok.Data;
+import com.example.tiktokclone.view.OtherProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +108,8 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, "heart clicked: ",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, OtherProfileActivity.class);
+                context.startActivity(intent);
             }
         });
     }

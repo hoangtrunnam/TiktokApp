@@ -60,6 +60,8 @@ public class LoginActivity extends AppCompatActivity {
                     if (loginUser != null) {
                         Toast.makeText(LoginActivity.this, "login success", Toast.LENGTH_SHORT).show();
                         DataLocalManager.SetUser(loginUser);
+                        Intent intent = new Intent(LoginActivity.this, HomeFragment.class);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(LoginActivity.this, "login false", Toast.LENGTH_SHORT).show();
                     }
