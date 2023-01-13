@@ -22,4 +22,10 @@ public class AppSharedPreferences {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(MY_SHARED_PREFERENCES,Context.MODE_PRIVATE);
         return sharedPreferences.getString(key, "");
     }
+
+    public void logout() {
+        SharedPreferences preferences = mContext.getSharedPreferences(MY_SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear().apply();
+    }
 }

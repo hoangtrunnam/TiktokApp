@@ -27,4 +27,10 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">#B3B3B3</item>
     </style>
+    
+    <style name="DialogAni">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+
 </resources>

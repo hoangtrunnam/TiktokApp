@@ -34,4 +34,8 @@ public class DataLocalManager {
         Login loginUser = gson.fromJson(stringJsonUser, Login.class);
         return loginUser;
     }
+
+    public static void loggedOut() {
+        DataLocalManager.getInstance().appSharedPreferences.logout();
+    }
 }
