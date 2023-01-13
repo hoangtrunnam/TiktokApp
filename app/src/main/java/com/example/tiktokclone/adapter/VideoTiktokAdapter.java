@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,13 +19,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.tiktokclone.R;
+import com.example.tiktokclone.api.ApiService;
+import com.example.tiktokclone.model.authen.Login;
 import com.example.tiktokclone.model.videoTiktok.Data;
+import com.example.tiktokclone.model.videoLiked.VideoLiked;
+import com.example.tiktokclone.store.DataLocalManager;
 import com.example.tiktokclone.view.OtherProfileActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.VideoTiktokHolder> {
     private ArrayList<Data> listVideoTiktok;
@@ -116,6 +124,39 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
                 context.startActivity(intent);
             }
         });
+
+        Login userLogin = DataLocalManager.getUser(); // get token
+        // bat su kien like
+            holder.like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (userLogin != null) {
+                        ApiService.apiService.likeAVideo("Bearer "+ userLogin.getMeta().getToken(), videoTiktok.getId()).enqueue(new Callback<VideoLiked>() {
+                            @Override
+                            public void onResponse(Call<VideoLiked> call, Response<VideoLiked> response) {
+                                VideoLiked videoLiked = response.body();
+                                if (videoLiked != null){
+                                    // set mau trai tim mau do
+                                    holder.like.setImageResource(R.drawable.heart_like_love_icon_red);
+                                    holder.likeCount.setText(videoLiked.getData().getLikes_count() + 1 + "");
+                                } else {
+                                    Toast.makeText(context, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<VideoLiked> call, Throwable t) {
+
+                            }
+                        });
+                    } else {
+                        Toast.makeText(context, "Vui lòng đăng nhập", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+
+
     }
 
     @Override
@@ -136,6 +177,7 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
         private TextView shareCount;
         private VideoView videoView;
         private CircleImageView avatar;
+        private ImageView like;
 
 
         public VideoTiktokHolder(@NonNull View itemView) {
@@ -148,6 +190,7 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
             shareCount = itemView.findViewById(R.id.shareCount);
             avatar = itemView.findViewById(R.id.circleImageView);
             videoView = (VideoView) itemView.findViewById(R.id.videoId);
+            like = itemView.findViewById(R.id.likeVideo);
 
         }
     }

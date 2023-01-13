@@ -2,6 +2,7 @@ package com.example.tiktokclone.view;
 
 import static java.security.AccessController.getContext;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,10 +48,12 @@ public class OtherProfileActivity extends AppCompatActivity {
     private TextView following;
     private TextView follower;
     private TextView likeCount;
-    private Button btnFollow;
+    private Button btnFollow,btnFollowXml;
     private TextView tvHeader;
     private ImageButton btnGoBack;
     private static String avatarDefault = "https://files.fullstack.edu.vn/f8-tiktok/users/11/630266fd71515.jpg";
+    private boolean isFollow;
+    private boolean trickFollow = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,23 +86,22 @@ public class OtherProfileActivity extends AppCompatActivity {
 
         btnFollow = findViewById(R.id.profile_btnFollow);
 
+
+
         btnFollow.setOnClickListener(view -> {
             Login userLogin = DataLocalManager.getUser();
             if (userLogin != null) {
-                // đang ko follow đc user
-                ApiService.apiService.followUser(userLogin.getMeta().getToken(),idUser).enqueue(new Callback<FollowUser>() {
+                if (!isFollow && trickFollow) {
+                ApiService.apiService.followUser("Bearer "+ userLogin.getMeta().getToken(),idUser).enqueue(new Callback<FollowUser>() {
+                    @SuppressLint("ResourceAsColor")
                     @Override
                     public void onResponse(Call<FollowUser> call, Response<FollowUser> response) {
                         FollowUser followUser = response.body();
                         if (followUser != null) {
-                            Toast.makeText(OtherProfileActivity.this, "call api okok", Toast.LENGTH_SHORT).show();
-                            if (followUser.getData().isIs_followed()) {
-                                btnFollow.setText("Tin nhắn");
-                                btnFollow.setBackgroundResource(R.color.white);
-                            } else {
-                                btnFollow.setText("Follow");
-                                btnFollow.setBackgroundResource(R.color.red_tiktok);
-                            }
+                            btnFollow.setText("Unfollow");
+                            btnFollow.setTextColor(R.color.black);
+                            btnFollow.setBackgroundResource(R.color.white);
+                            trickFollow = false;
                         } else {
                             Toast.makeText(OtherProfileActivity.this, "call api false", Toast.LENGTH_SHORT).show();
                         }
@@ -111,6 +113,31 @@ public class OtherProfileActivity extends AppCompatActivity {
                         Log.d("Exception", "onFailure: " + t.getMessage());
                     }
                 });
+
+                } else if (!trickFollow) {
+                    ApiService.apiService.unFollowUser("Bearer "+ userLogin.getMeta().getToken(),idUser).enqueue(new Callback<FollowUser>() {
+                        @SuppressLint("ResourceAsColor")
+                        @Override
+                        public void onResponse(Call<FollowUser> call, Response<FollowUser> response) {
+                            FollowUser followUser = response.body();
+                            if (followUser != null) {
+                                btnFollow.setText("Follow");
+                                btnFollow.setTextColor(R.color.white);
+                                btnFollow.setBackgroundResource(R.color.red_tiktok);
+                                trickFollow = true;
+                            } else {
+                                Toast.makeText(OtherProfileActivity.this, "call api false", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<FollowUser> call, Throwable t) {
+                            Toast.makeText(OtherProfileActivity.this, "connect err", Toast.LENGTH_SHORT).show();
+                            Log.d("Exception", "onFailure: " + t.getMessage());
+                        }
+                    });
+
+                }
             }
 
         });
@@ -170,26 +197,34 @@ public class OtherProfileActivity extends AppCompatActivity {
         following = findViewById(R.id.profile_dangollow);
         follower = findViewById(R.id.profile_follower);
         likeCount = findViewById(R.id.profile_thich);
+        btnFollowXml = findViewById(R.id.profile_btnFollow);
 
         ApiService.apiService.getProfileUserByNickName(nicknameApi).enqueue(new Callback<OtherProfile>() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onResponse(Call<OtherProfile> call, Response<OtherProfile> response) {
                 OtherProfile otherProfile = response.body();
                 if(otherProfile != null) {
-
-                    if (otherProfile.getData().getAvatar().equals("https://files.fullstack.edu.vn/f8-tiktok/") || otherProfile.getData().getAvatar().equals("")) {
-                        Glide.with(OtherProfileActivity.this)
-                                .load(avatarDefault)
-                                .into(avatar);
-                    } else {
-                        Glide.with(OtherProfileActivity.this)
-                                .load(otherProfile.getData().getAvatar())
-                                .into(avatar);
-                    }
+                    Glide.with(OtherProfileActivity.this)
+                            .load(otherProfile.getData().getAvatar())
+                            .into(avatar);
                     nickName.setText("@" + otherProfile.getData().getNickname());
                     following.setText(otherProfile.getData().getFollowings_count() + "");
                     follower.setText(otherProfile.getData().getFollowers_count() + "");
                     likeCount.setText(otherProfile.getData().getLikes_count() + "");
+                    isFollow = otherProfile.getData().isIs_followed();
+
+//                    Toast.makeText(OtherProfileActivity.this, "isFollow dddd" + isFollow, Toast.LENGTH_SHORT).show();
+
+//                    if(isFollow) {
+//                        btnFollowXml.setText("unFollow");
+////                        btnFollow.setTextColor(R.color.black);
+//                        btnFollowXml.setBackgroundResource(R.color.white);
+//                    } else {
+//                        btnFollowXml.setText("Follow");
+////                        btnFollow.setTextColor(R.color.white);
+//                        btnFollowXml.setBackgroundResource(R.color.teal_200);
+//                    }
                 }
             }
 
