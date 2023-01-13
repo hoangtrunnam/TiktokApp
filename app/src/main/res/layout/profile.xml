@@ -12,14 +12,19 @@
         android:orientation="vertical"
         tools:ignore="MissingConstraints"
         android:weightSum="100">
-        <TextView
-            android:id="@+id/profile_hoso"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:text="Hồ sơ"
-            android:textStyle="bold"/>
+<!--        <TextView-->
+<!--            android:id="@+id/profile_hoso"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Hồ sơ"-->
+<!--            android:textStyle="bold"/>-->
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/custom_actionbar" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="100dp"
             android:layout_height="100dp"

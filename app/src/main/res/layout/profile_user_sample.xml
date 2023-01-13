@@ -8,14 +8,7 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="10dp"
     android:layout_gravity="center">
-    <ImageButton
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="5dp"
-        android:id="@+id/profile_btn_clear"
-        android:layout_gravity="right"
-        android:background="@color/transparent"
-        android:src="@drawable/icon_close"/>
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_avatar"
         android:layout_width="match_parent"
@@ -63,6 +56,7 @@
         android:backgroundTint="@color/red_tiktok"
         style="@style/Base.CardView"
         android:text="Follow"
+        android:textColor="#ffffff"
         android:gravity="center"
         android:layout_gravity="bottom"
         android:layout_marginTop="220dp"
