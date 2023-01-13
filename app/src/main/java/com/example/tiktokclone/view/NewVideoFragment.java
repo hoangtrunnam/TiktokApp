@@ -1,14 +1,20 @@
 package com.example.tiktokclone.view;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tiktokclone.R;
+import com.example.tiktokclone.model.authen.Login;
+import com.example.tiktokclone.store.DataLocalManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,6 +61,36 @@ public class NewVideoFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        new Runnable() {
+            @Override
+            public void run() {
+                handleUpcoming();
+            }
+        }.run();
+
+
+
+    }
+
+    private void handleUpcoming() {
+        Login userLogin = DataLocalManager.getUser();
+
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+        if (userLogin != null){
+            alertDialog.setTitle("chào "+ userLogin.getData().getNickname().toString());
+        } else {
+            alertDialog.setTitle("TikTok xin chào bạn");
+        }
+
+        alertDialog.setMessage("Tính năng hiện đang được phát triển, mời bạn quay lại sau tết âm ^^");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Đóng",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 
     @Override

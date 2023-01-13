@@ -7,6 +7,8 @@ import com.google.gson.Gson;
 
 public class DataLocalManager {
     private static final String OBJECT_USER = "OBJECT_USER";
+    private static final String ID_Video = "ID_Video";
+
     private static DataLocalManager instance;
     private AppSharedPreferences appSharedPreferences;
 
@@ -37,5 +39,15 @@ public class DataLocalManager {
 
     public static void loggedOut() {
         DataLocalManager.getInstance().appSharedPreferences.logout();
+    }
+
+    public static void SetIdVideo(int idVideo) {
+        DataLocalManager.getInstance().appSharedPreferences.putIntIdVideo(ID_Video, idVideo);
+
+    }
+
+    public static int getIdVideo() {
+        int idVideo = DataLocalManager.getInstance().appSharedPreferences.getIntIdVideo(ID_Video);
+        return idVideo;
     }
 }

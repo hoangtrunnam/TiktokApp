@@ -1,13 +1,18 @@
 package com.example.tiktokclone.adapter;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
@@ -15,6 +20,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -24,6 +30,8 @@ import com.example.tiktokclone.model.authen.Login;
 import com.example.tiktokclone.model.videoTiktok.Data;
 import com.example.tiktokclone.model.videoLiked.VideoLiked;
 import com.example.tiktokclone.store.DataLocalManager;
+import com.example.tiktokclone.view.CommentActivity;
+import com.example.tiktokclone.view.LoginActivity;
 import com.example.tiktokclone.view.OtherProfileActivity;
 
 import java.util.ArrayList;
@@ -136,9 +144,8 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
                             public void onResponse(Call<VideoLiked> call, Response<VideoLiked> response) {
                                 VideoLiked videoLiked = response.body();
                                 if (videoLiked != null){
-                                    // set mau trai tim mau do
                                     holder.like.setImageResource(R.drawable.heart_like_love_icon_red);
-                                    holder.likeCount.setText(videoLiked.getData().getLikes_count() + 1 + "");
+                                    holder.likeCount.setText(videoLiked.getData().getLikes_count() + "");
                                 } else {
                                     Toast.makeText(context, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
                                 }
@@ -155,6 +162,12 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
                 }
             });
 
+        holder.comment.setOnClickListener(view -> {
+            DataLocalManager.SetIdVideo(videoTiktok.getId());
+//            showDialog();
+            Intent intent = new Intent(context, CommentActivity.class);
+            context.startActivity(intent);
+        });
 
 
     }
@@ -178,6 +191,7 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
         private VideoView videoView;
         private CircleImageView avatar;
         private ImageView like;
+        private ImageView comment;
 
 
         public VideoTiktokHolder(@NonNull View itemView) {
@@ -191,7 +205,24 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
             avatar = itemView.findViewById(R.id.circleImageView);
             videoView = (VideoView) itemView.findViewById(R.id.videoId);
             like = itemView.findViewById(R.id.likeVideo);
+            comment = itemView.findViewById(R.id.iconComment);
 
         }
+    }
+    private void showDialog() {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_comment);
+
+
+
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+
     }
 }

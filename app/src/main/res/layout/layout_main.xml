@@ -30,9 +30,9 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintBottom_toTopOf="@+id/iconComment"
+        app:layout_constraintEnd_toEndOf="@+id/iconComment"
+        app:layout_constraintStart_toStartOf="@+id/iconComment"
         app:srcCompat="@drawable/like" />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -60,7 +60,7 @@
         app:layout_constraintVertical_bias="0.7" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/iconComment"
         android:translationZ="2dp"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -156,9 +156,9 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintEnd_toEndOf="@+id/iconComment"
+        app:layout_constraintStart_toStartOf="@+id/iconComment"
+        app:layout_constraintTop_toBottomOf="@+id/iconComment" />
 
     <TextView
         android:id="@+id/likeCount"
