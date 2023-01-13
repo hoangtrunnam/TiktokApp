@@ -120,14 +120,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0">
 
-            <TextView
-                android:id="@+id/hoso"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:text="Hồ sơ"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/hoso"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Hồ sơ"-->
+<!--                android:textStyle="bold" />-->
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/avatar"

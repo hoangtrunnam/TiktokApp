@@ -1,16 +1,24 @@
 package com.example.tiktokclone.view;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -137,7 +145,9 @@ public class ProfileFragment extends Fragment {
             });
 
 
-
+            btnMenu.setOnClickListener(view2 -> {
+                showDialog();
+            });
 
 
 
@@ -170,12 +180,37 @@ public class ProfileFragment extends Fragment {
         btnNavigationLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity(), LoginActivity.class);
-                startActivity(i);
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.putExtra("tagIconBack", "true");
+                startActivity(intent);
             }
         });
 
         return view;
+    }
+
+    private void showDialog() {
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottom_sheet);
+
+        LinearLayoutCompat btnLogout = dialog.findViewById(R.id.logout);
+
+        btnLogout.setOnClickListener(view -> {
+            dialog.hide();
+            DataLocalManager.loggedOut();
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            intent.putExtra("tagIconBack", "false");
+            startActivity(intent);
+        });
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+
     }
 
 

@@ -49,9 +49,21 @@ public class LoginActivity extends AppCompatActivity {
         btnNavigateSignUp = findViewById(R.id.link_signup);
         tvHeader.setText("Đăng nhập");
         btnGoBack = findViewById(R.id.icBack);
-        btnGoBack.setOnClickListener(view -> {
-            finish();
-        });
+
+        Intent intent = getIntent();
+        String showIcon = intent.getStringExtra("tagIconBack");
+
+        if (showIcon.equals("false")) {
+            btnGoBack.setVisibility(View.GONE);
+        } else {
+            btnGoBack.setVisibility(View.VISIBLE);
+            btnGoBack.setOnClickListener(view -> {
+                finish();
+            });
+        }
+
+
+
         btnLogin.setOnClickListener(view -> {
             UserLogin userLogin = new UserLogin(email.getText().toString(), passWord.getText().toString());
             ApiService.apiService.handleLogin(userLogin).enqueue(new Callback<Login>() {

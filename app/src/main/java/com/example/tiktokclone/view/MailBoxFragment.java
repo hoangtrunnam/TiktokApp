@@ -174,8 +174,9 @@ public class MailBoxFragment extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent i = new Intent(getActivity(), LoginActivity.class);
-                    startActivity(i);
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    intent.putExtra("tagIconBack", "true");
+                    startActivity(intent);
                 }
             });
         }
