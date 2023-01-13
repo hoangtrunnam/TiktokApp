@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -16,6 +17,9 @@ import com.example.tiktokclone.model.authen.Login;
 import com.example.tiktokclone.model.profile.RootProfile;
 import com.example.tiktokclone.store.DataLocalManager;
 import com.example.tiktokclone.view.LoginActivity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -70,37 +74,33 @@ public class EditProfile extends AppCompatActivity {
             } else if (txtHeader.equals("Twitter")) {
                 key = "twitter_url";
             }
-//            Toast.makeText(this, "key "+ key, Toast.LENGTH_SHORT).show();
-
-            RequestBody requestBody = new MultipartBody.Builder()
-                    .setType(MultipartBody.FORM)
-                    .addFormDataPart(key, editFieldProfile.getText().toString())
-                    .build();
-
-//            RequestBody requestBodyUserName = RequestBody.create(MediaType.parse("text/plain"), editFieldProfile.getText().toString());
 
             Login userLogin = DataLocalManager.getUser();
+            Map<String,String> params = new HashMap<String, String>();
+            params.put(key, editFieldProfile.getText().toString());
 
+            if (userLogin != null) {
+                ApiService.apiService.updateProfile("Bearer "+ userLogin.getMeta().getToken(),params).enqueue(new Callback<RootProfile>() {
+                    @Override
+                    public void onResponse(Call<RootProfile> call, Response<RootProfile> response) {
+                        RootProfile profileUpdated = response.body();
+                        if (profileUpdated != null) {
+                            Toast.makeText(EditProfile.this, "Update" + txtHeader +" thành công", Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else {
+                            Toast.makeText(EditProfile.this, "có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                        }
 
-            ApiService.apiService.updateProfile(userLogin.getMeta().getToken(),requestBody).enqueue(new Callback<RootProfile>() {
-                @Override
-                public void onResponse(Call<RootProfile> call, Response<RootProfile> response) {
-                    RootProfile profileUpdated = response.body();
-                    // set lai store
-                    if (profileUpdated != null) {
-                        Toast.makeText(EditProfile.this, "Update data thanh cong", Toast.LENGTH_SHORT).show();
-                        finish();
-                    } else {
-                        Toast.makeText(EditProfile.this, "có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
                     }
 
-                }
+                    @Override
+                    public void onFailure(Call<RootProfile> call, Throwable t) {
+                        Toast.makeText(EditProfile.this, "Connect error", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                @Override
-                public void onFailure(Call<RootProfile> call, Throwable t) {
-                    Toast.makeText(EditProfile.this, "Connect error", Toast.LENGTH_SHORT).show();
-                }
-            });
+            }
+
         });
 
 

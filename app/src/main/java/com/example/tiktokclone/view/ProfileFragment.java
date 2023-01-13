@@ -124,25 +124,13 @@ public class ProfileFragment extends Fragment {
             iconCoin.setVisibility(View.VISIBLE);
             iconQr.setVisibility(View.VISIBLE);
 
+            new Runnable() {
+                @Override
+                public void run() {
+                    handleGetCurrentuser(userLogin);
+                }
+            }.run();
 
-            iconQr.setOnClickListener(view1 -> {
-                ApiService.apiService.getCurrentUser(userLogin.getMeta().getToken()).enqueue(new Callback<RootProfile>() {
-                    @Override
-                    public void onResponse(Call<RootProfile> call, Response<RootProfile> response) {
-                        RootProfile profile = response.body();
-                        if (profile != null) {
-                            Toast.makeText(getActivity(), "da co data" + profile.getData().getFirst_name(), Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getActivity(), "ko co data ", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<RootProfile> call, Throwable t) {
-
-                    }
-                });
-            });
 
 
             btnMenu.setOnClickListener(view2 -> {
@@ -150,20 +138,13 @@ public class ProfileFragment extends Fragment {
             });
 
 
-
-
-
-
-
-
-
-            nickName.setText("@" + userLogin.getData().getNickname());
-            followingCount.setText(userLogin.getData().getFollowings_count() + ""); //maybe null
-            followedCount.setText(userLogin.getData().getFollowers_count() + ""); //maybe null
-            likeCount.setText(userLogin.getData().getLikes_count() + "");
-            Glide.with(getActivity())
-                    .load(userLogin.getData().getAvatar())
-                    .into(avatar);
+//            nickName.setText("@" + userLogin.getData().getNickname());
+//            followingCount.setText(userLogin.getData().getFollowings_count() + ""); //maybe null
+//            followedCount.setText(userLogin.getData().getFollowers_count() + ""); //maybe null
+//            likeCount.setText(userLogin.getData().getLikes_count() + "");
+//            Glide.with(getActivity())
+//                    .load(userLogin.getData().getAvatar())
+//                    .into(avatar);
 
             btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -173,9 +154,6 @@ public class ProfileFragment extends Fragment {
                 }
             });
         }
-
-
-
 
         btnNavigationLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,6 +188,32 @@ public class ProfileFragment extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
         dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+    }
+
+    public void handleGetCurrentuser(Login userLogin) {
+        ApiService.apiService.getCurrentUser("Bearer "+ userLogin.getMeta().getToken()).enqueue(new Callback<RootProfile>() {
+            @Override
+            public void onResponse(Call<RootProfile> call, Response<RootProfile> response) {
+                RootProfile profile = response.body();
+                if (profile != null) {
+                    nickName.setText("@" + profile.getData().getNickname());
+                    followingCount.setText(profile.getData().getFollowings_count() + ""); //maybe null
+                    followedCount.setText(profile.getData().getFollowers_count() + ""); //maybe null
+                    likeCount.setText(profile.getData().getLikes_count() + "");
+                    Glide.with(getActivity())
+                            .load(profile.getData().getAvatar())
+                            .into(avatar);
+                } else {
+                    Toast.makeText(getActivity(), "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RootProfile> call, Throwable t) {
+                Toast.makeText(getActivity(), "Connetion error", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

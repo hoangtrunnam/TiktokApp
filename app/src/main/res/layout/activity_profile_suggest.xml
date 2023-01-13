@@ -129,6 +129,7 @@
                 android:backgroundTint="@color/red_tiktok"
                 style="@style/Base.CardView"
                 android:text="Follow"/>
+
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"

@@ -25,14 +25,13 @@
         app:srcCompat="@drawable/disc" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/likeVideo"
         android:translationZ="2dp"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:srcCompat="@drawable/like" />
 
@@ -43,10 +42,10 @@
         android:layout_height="64dp"
         android:layout_marginBottom="24dp"
         android:src="@drawable/persion_icon"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintBottom_toTopOf="@+id/likeVideo"
+        app:layout_constraintEnd_toEndOf="@+id/likeVideo"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView4" />
+        app:layout_constraintStart_toStartOf="@+id/likeVideo" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -54,7 +53,7 @@
         android:translationZ="3dp"
         android:layout_height="32dp"
         android:src="@drawable/icon_add"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintBottom_toTopOf="@+id/likeVideo"
         app:layout_constraintEnd_toEndOf="@+id/circleImageView"
         app:layout_constraintStart_toStartOf="@+id/circleImageView"
         app:layout_constraintTop_toTopOf="@+id/circleImageView"
@@ -168,9 +167,9 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintEnd_toEndOf="@+id/likeVideo"
+        app:layout_constraintStart_toStartOf="@+id/likeVideo"
+        app:layout_constraintTop_toBottomOf="@+id/likeVideo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

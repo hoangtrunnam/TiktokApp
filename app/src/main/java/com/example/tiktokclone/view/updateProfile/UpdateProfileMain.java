@@ -3,18 +3,26 @@ package com.example.tiktokclone.view.updateProfile;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.tiktokclone.R;
+import com.example.tiktokclone.api.ApiService;
 import com.example.tiktokclone.model.authen.Login;
+import com.example.tiktokclone.model.profile.RootProfile;
 import com.example.tiktokclone.store.DataLocalManager;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UpdateProfileMain extends AppCompatActivity {
     private TextView tvHeader, userName, userId, linkUrlTiktok, bio, insUrl,ytUrl, twitterUrl;
@@ -55,7 +63,20 @@ public class UpdateProfileMain extends AppCompatActivity {
             finish();
         });
 
-        handleGetProfileLocal();
+
+        new Runnable() {
+            @Override
+            public void run() {
+                handleGetCurrentProfile();
+            }
+        }.run();
+
+        View focusView = getCurrentFocus();
+        @SuppressLint("ResourceType") View currentView = findViewById(R.layout.activity_update_profile_main);
+        if (currentView == focusView) {
+            // your code
+            Toast.makeText(UpdateProfileMain.this, "focuseddd", Toast.LENGTH_SHORT).show();
+        }
 
         btnEditName.setOnClickListener(view -> {
             handleClickView(btnEditName, "Tên", userNameFromLocal,"bạn chỉ có thể thay đổi biệt danh 7 ngày một lần");
@@ -92,47 +113,63 @@ public class UpdateProfileMain extends AppCompatActivity {
 
 
 
-    private void handleGetProfileLocal() {
+    private void handleGetCurrentProfile() {
         Login userLogin = DataLocalManager.getUser();
 
         if (userLogin != null) {
-            userNameFromLocal = userLogin.getData().getFirst_name();
-            userIdFromLocal = userLogin.getData().getNickname();
-            linkUrlTiktokFromLocal = userLogin.getData().getNickname();
-            bioFromLocal = userLogin.getData().getBio();
-            insUrlFromLocal = userLogin.getData().getInstagram_url();
-            ytUrlFromLocal = userLogin.getData().getYoutube_url();
-            twitterUrlFromLocal = userLogin.getData().getTwitter_url();
 
-            userName.setText(userNameFromLocal);
-            userId.setText(userIdFromLocal);
-            linkUrlTiktok.setText("TikTok.com/@" + linkUrlTiktokFromLocal);
-            if (bioFromLocal.equals("")) {
-                bio.setText("Thêm tiểu sử");
-            } else {
-                bio.setText(bioFromLocal);
-            }
-            if (insUrlFromLocal.equals("")) {
-                insUrl.setText("Thêm Instagram");
-            } else {
-                insUrl.setText(insUrlFromLocal);
-            }
-            if (ytUrlFromLocal.equals("")) {
-                ytUrl.setText("Thêm YouTube");
-            } else {
-                ytUrl.setText(ytUrlFromLocal);
-            }
+            ApiService.apiService.getCurrentUser("Bearer "+ userLogin.getMeta().getToken()).enqueue(new Callback<RootProfile>() {
+                @Override
+                public void onResponse(Call<RootProfile> call, Response<RootProfile> response) {
+                    RootProfile currentProfile = response.body();
+                    if (currentProfile != null) {
+                        userNameFromLocal = currentProfile.getData().getFirst_name();
+                        userIdFromLocal = currentProfile.getData().getNickname();
+                        linkUrlTiktokFromLocal = currentProfile.getData().getNickname();
+                        bioFromLocal = currentProfile.getData().getBio();
+                        insUrlFromLocal = currentProfile.getData().getInstagram_url();
+                        ytUrlFromLocal = currentProfile.getData().getYoutube_url();
+                        twitterUrlFromLocal = currentProfile.getData().getTwitter_url();
 
-            if (twitterUrlFromLocal.equals("")) {
-                twitterUrl.setText("Thêm Twitter");
-            } else {
-                twitterUrl.setText(twitterUrlFromLocal);
-            }
+                        userName.setText(userNameFromLocal);
+                        userId.setText(userIdFromLocal);
+                        linkUrlTiktok.setText("TikTok.com/@" + linkUrlTiktokFromLocal);
+                        if (bioFromLocal.equals("")) {
+                            bio.setText("Thêm tiểu sử");
+                        } else {
+                            bio.setText(bioFromLocal);
+                        }
+                        if (insUrlFromLocal.equals("")) {
+                            insUrl.setText("Thêm Instagram");
+                        } else {
+                            insUrl.setText(insUrlFromLocal);
+                        }
+                        if (ytUrlFromLocal.equals("")) {
+                            ytUrl.setText("Thêm YouTube");
+                        } else {
+                            ytUrl.setText(ytUrlFromLocal);
+                        }
 
-            Glide.with(this)
-                    .load(userLogin.getData().getAvatar())
-                    .into(avatar);
+                        if (twitterUrlFromLocal.equals("")) {
+                            twitterUrl.setText("Thêm Twitter");
+                        } else {
+                            twitterUrl.setText(twitterUrlFromLocal);
+                        }
 
+                        Glide.with(UpdateProfileMain.this)
+                                .load(userLogin.getData().getAvatar())
+                                .into(avatar);
+                    } else {
+                        Toast.makeText(UpdateProfileMain.this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<RootProfile> call, Throwable t) {
+                    Toast.makeText(UpdateProfileMain.this, "Connetion error", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }
