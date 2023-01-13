@@ -17,6 +17,7 @@ import com.example.tiktokclone.model.profile.RootProfile;
 import com.example.tiktokclone.store.DataLocalManager;
 import com.example.tiktokclone.view.LoginActivity;
 
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -69,12 +70,18 @@ public class EditProfile extends AppCompatActivity {
             } else if (txtHeader.equals("Twitter")) {
                 key = "twitter_url";
             }
-            Toast.makeText(this, "key "+ key, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "key "+ key, Toast.LENGTH_SHORT).show();
+
             RequestBody requestBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart(key, editFieldProfile.getText().toString())
                     .build();
+
+//            RequestBody requestBodyUserName = RequestBody.create(MediaType.parse("text/plain"), editFieldProfile.getText().toString());
+
             Login userLogin = DataLocalManager.getUser();
+
+
             ApiService.apiService.updateProfile(userLogin.getMeta().getToken(),requestBody).enqueue(new Callback<RootProfile>() {
                 @Override
                 public void onResponse(Call<RootProfile> call, Response<RootProfile> response) {

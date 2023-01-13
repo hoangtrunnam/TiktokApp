@@ -16,11 +16,16 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.tiktokclone.R;
+import com.example.tiktokclone.api.ApiService;
 import com.example.tiktokclone.model.authen.Login;
+import com.example.tiktokclone.model.profile.RootProfile;
 import com.example.tiktokclone.store.DataLocalManager;
 import com.example.tiktokclone.view.updateProfile.UpdateProfileMain;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -110,6 +115,37 @@ public class ProfileFragment extends Fragment {
             btnMenu.setVisibility(View.VISIBLE);
             iconCoin.setVisibility(View.VISIBLE);
             iconQr.setVisibility(View.VISIBLE);
+
+
+            iconQr.setOnClickListener(view1 -> {
+                ApiService.apiService.getCurrentUser(userLogin.getMeta().getToken()).enqueue(new Callback<RootProfile>() {
+                    @Override
+                    public void onResponse(Call<RootProfile> call, Response<RootProfile> response) {
+                        RootProfile profile = response.body();
+                        if (profile != null) {
+                            Toast.makeText(getActivity(), "da co data" + profile.getData().getFirst_name(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getActivity(), "ko co data ", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<RootProfile> call, Throwable t) {
+
+                    }
+                });
+            });
+
+
+
+
+
+
+
+
+
+
+
 
             nickName.setText("@" + userLogin.getData().getNickname());
             followingCount.setText(userLogin.getData().getFollowings_count() + ""); //maybe null

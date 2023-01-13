@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tiktokclone.MainActivity;
 import com.example.tiktokclone.R;
 import com.example.tiktokclone.SplashActivity;
 import com.example.tiktokclone.api.ApiService;
@@ -60,8 +61,9 @@ public class LoginActivity extends AppCompatActivity {
                     if (loginUser != null) {
                         Toast.makeText(LoginActivity.this, "login success", Toast.LENGTH_SHORT).show();
                         DataLocalManager.SetUser(loginUser);
-                        Intent intent = new Intent(LoginActivity.this, HomeFragment.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(LoginActivity.this, "login false", Toast.LENGTH_SHORT).show();
                     }

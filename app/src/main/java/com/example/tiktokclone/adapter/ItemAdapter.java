@@ -53,8 +53,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.RecyclerViewHo
         Glide.with(context)
                 .load(userSuggest.getAvatar())
                 .into(holder.avatar);
-        holder.avatar.setOnClickListener(new View.OnClickListener() {
 
+        holder.avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i("TAGaa", "onClick: " + userSuggest.getNickname());

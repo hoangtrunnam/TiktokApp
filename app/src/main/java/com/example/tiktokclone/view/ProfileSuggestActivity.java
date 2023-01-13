@@ -24,12 +24,8 @@ public class ProfileSuggestActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNewActivity();
+                finish();
             }
         });
-    }
-    public void openNewActivity(){
-        Intent intent = new Intent(this, OtherProfileActivity.class);
-        startActivity(intent);
     }
 }
