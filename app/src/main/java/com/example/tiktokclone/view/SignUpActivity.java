@@ -1,5 +1,6 @@
 package com.example.tiktokclone.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tiktokclone.MainActivity;
 import com.example.tiktokclone.R;
 import com.example.tiktokclone.api.ApiService;
 import com.example.tiktokclone.model.authen.SignUp;
@@ -50,7 +52,9 @@ public class SignUpActivity extends AppCompatActivity {
                 public void onResponse(Call<SignUpReponse> call, Response<SignUpReponse> response) {
                     SignUpReponse signUpReponse = response.body();
                     if (signUpReponse != null) {
-                        Toast.makeText(SignUpActivity.this, "Đăng kí tài khoản thành công, quay lại đăng nhập", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Đăng kí tài khoản thành công", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                        startActivity(intent);
                         finish();
                     } else {
                         Toast.makeText(SignUpActivity.this, "Đã có lỗi xảy ra", Toast.LENGTH_LONG).show();
