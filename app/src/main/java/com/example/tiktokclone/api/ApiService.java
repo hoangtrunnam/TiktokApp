@@ -5,6 +5,7 @@ import com.example.tiktokclone.model.authen.SignUp;
 import com.example.tiktokclone.model.authen.SignUpReponse;
 import com.example.tiktokclone.model.authen.UserLogin;
 
+import com.example.tiktokclone.model.comment.Comment;
 import com.example.tiktokclone.model.followUser.FollowUser;
 import com.example.tiktokclone.model.otherProfile.OtherProfile;
 import com.example.tiktokclone.model.profile.RootProfile;
@@ -73,7 +74,11 @@ public interface ApiService {
     Call<FollowUser> unFollowUser(@Header("Authorization") String authorization, @Path("idUser") int idUser);
 
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
-    @POST("api/users/{idVideo}/follow")
+    @POST("api/videos/{idVideo}/like")
     Call<VideoLiked> likeAVideo(@Header("Authorization") String authorization, @Path("idVideo") int idVideo);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @GET("api/videos/{idVideo}/comments")
+    Call<Comment> getListComment(@Header("Authorization") String authorization, @Path("idVideo") int idVideo);
 
 }
