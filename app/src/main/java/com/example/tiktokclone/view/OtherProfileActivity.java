@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +48,9 @@ public class OtherProfileActivity extends AppCompatActivity {
     private TextView follower;
     private TextView likeCount;
     private Button btnFollow;
+    private TextView tvHeader;
+    private ImageButton btnGoBack;
+    private static String avatarDefault = "https://files.fullstack.edu.vn/f8-tiktok/users/11/630266fd71515.jpg";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +62,16 @@ public class OtherProfileActivity extends AppCompatActivity {
         String nickName = extras.getString("nickNameOtherProfile");
         String nicknameApi = "@" + nickName;
         int idUser = Integer.parseInt(extras.getString("idUser"));
+
+
+        tvHeader = findViewById(R.id.tvTitle);
+        tvHeader.setText("Đăng nhập");
+        btnGoBack = findViewById(R.id.icBack);
+        btnGoBack.setOnClickListener(view -> {
+            finish();
+        });
+
+
 
         new Runnable() {
             @Override
@@ -161,9 +176,16 @@ public class OtherProfileActivity extends AppCompatActivity {
             public void onResponse(Call<OtherProfile> call, Response<OtherProfile> response) {
                 OtherProfile otherProfile = response.body();
                 if(otherProfile != null) {
-                    Glide.with(OtherProfileActivity.this)
-                            .load(otherProfile.getData().getAvatar())
-                            .into(avatar);
+
+                    if (otherProfile.getData().getAvatar().equals("https://files.fullstack.edu.vn/f8-tiktok/") || otherProfile.getData().getAvatar().equals("")) {
+                        Glide.with(OtherProfileActivity.this)
+                                .load(avatarDefault)
+                                .into(avatar);
+                    } else {
+                        Glide.with(OtherProfileActivity.this)
+                                .load(otherProfile.getData().getAvatar())
+                                .into(avatar);
+                    }
                     nickName.setText("@" + otherProfile.getData().getNickname());
                     following.setText(otherProfile.getData().getFollowings_count() + "");
                     follower.setText(otherProfile.getData().getFollowers_count() + "");
