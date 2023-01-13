@@ -1,8 +1,12 @@
 package com.example.tiktokclone.view;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,10 +18,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tiktokclone.R;
+import com.example.tiktokclone.adapter.MailBoxAdapter;
+import com.example.tiktokclone.adapter.SearchUserAdapter;
 import com.example.tiktokclone.api.ApiService;
+import com.example.tiktokclone.model.MailBox;
+import com.example.tiktokclone.model.SearchUser;
 import com.example.tiktokclone.model.authen.Login;
 import com.example.tiktokclone.model.authen.UserLogin;
+import com.example.tiktokclone.store.DataLocalManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,11 +49,11 @@ public class FriendFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String mParam1;
+    private RecyclerView rvItems;
     private String mParam2;
-    private EditText email;
-    private EditText passWord;
-    private Button btnLogin;
-
+    private TextView name;
+    private TextView description;
+    private CircleImageView image;
     public FriendFragment() {
         // Required empty public constructor
     }
@@ -77,57 +90,50 @@ public class FriendFragment extends Fragment {
 //        btnLogin.setOnClickListener(view -> {clickCallApi();});
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_friend,container, false);
-        email = (EditText)view.findViewById(R.id.emailLogin);
-        passWord = (EditText)view.findViewById(R.id.password);
+        View view = inflater.inflate(R.layout.fragment_friend, container, false);
+        Login userLogin = DataLocalManager.getUser();
+        image = (CircleImageView)view.findViewById(R.id.image_search);
+        description = (TextView)view.findViewById(R.id.description_search);
+        name = (TextView)view.findViewById(R.id.name_search);
+        rvItems = (RecyclerView)view.findViewById(R.id.friend_search_fragment);
+        super.onCreate(savedInstanceState);
+            List<SearchUser> people = new ArrayList<>();
+            people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+            people.add(new SearchUser("Hai", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
+        people.add(new SearchUser("Long", "Bạn đang chơi trò chơi rất hay","person"));
 
-        btnLogin = (Button)view.findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                UserLogin userLogin = new UserLogin(email.getText().toString(), passWord.getText().toString());
-                UserLogin userLogin = new UserLogin(email.getText().toString(), passWord.getText().toString());
-                ApiService.apiService.handleLogin(userLogin).enqueue(new Callback<Login>() {
-                    @Override
-                    public void onResponse(Call<Login> call, Response<Login> response) {
-                        Login login = response.body();
-                        if(login != null) {
-                            Toast.makeText(getActivity(), "login successfully!", Toast.LENGTH_LONG).show();
-                            Log.v("email value=", email.getText().toString());
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Login> call, Throwable t) {
-
-                    }
-                });
-            }
-        });
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+            rvItems.setLayoutManager(layoutManager);
+            rvItems.setHasFixedSize(true);
+            rvItems.setAdapter(new SearchUserAdapter(getActivity(),people));
         return view;
+
     }
-
-
-    private void clickCallApi() {
-        UserLogin userLogin = new UserLogin(email.toString(),passWord.toString());
-        ApiService.apiService.handleLogin(userLogin).enqueue(new Callback<Login>() {
-            @Override
-            public void onResponse(Call<Login> call, Response<Login> response) {
-                Login login = response.body();
-                if(login != null) {
-                    Toast.makeText(getActivity(), "login successfully!", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Login> call, Throwable t) {
-
-            }
-        });
-    }
-
 }
+
+

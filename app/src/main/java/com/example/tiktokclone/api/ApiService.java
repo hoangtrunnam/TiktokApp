@@ -45,6 +45,7 @@ public interface ApiService {
     @POST("api/auth/login")
     Call<Login> handleLogin(@Body UserLogin userLogin);
 
+
     @POST("api/auth/register")
     Call<SignUpReponse> handleSignUp(@Body SignUp signUp);
 
