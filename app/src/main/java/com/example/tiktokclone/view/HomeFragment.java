@@ -119,7 +119,8 @@ public class HomeFragment extends Fragment {
                                 videoTiktok.getData().get(i).getComments_count(),
                                 videoTiktok.getData().get(i).getShares_count(),
                                 videoTiktok.getData().get(i).getViews_count(),
-                                videoTiktok.getData().get(i).getUser()
+                                videoTiktok.getData().get(i).getUser(),
+                                videoTiktok.getData().get(i).getUuid()
                         ));
                     }
 //                    videoTiktokAdapter = new VideoTiktokAdapter(getContext(), dataVideo);
