@@ -61,16 +61,29 @@
                 android:id="@+id/dateCreated">
 
             </TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/like"
+
+                    android:backgroundTint="@color/transparent"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/reply"
+                    android:gravity="center|left"
+                    />
+            </LinearLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#DBE0E6"
-                android:layout_marginTop="10dp"
-                />
-
+                android:layout_marginTop="10dp" />
         </LinearLayout>
-
-
     </LinearLayout>
-
 </androidx.appcompat.widget.LinearLayoutCompat>
