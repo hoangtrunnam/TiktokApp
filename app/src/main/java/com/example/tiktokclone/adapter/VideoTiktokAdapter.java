@@ -164,8 +164,8 @@ public class VideoTiktokAdapter extends RecyclerView.Adapter<VideoTiktokAdapter.
 
         holder.comment.setOnClickListener(view -> {
             DataLocalManager.SetIdVideo(videoTiktok.getId());
-//            showDialog();
             Intent intent = new Intent(context, CommentActivity.class);
+            intent.putExtra("uuid", videoTiktok.getUuid());
             context.startActivity(intent);
         });
 
